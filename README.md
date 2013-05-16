@@ -2,6 +2,7 @@
 
 MoreCoreExtensions are a set of core extensions beyond those provided by ActiveSupport.
 
+[![Gem Version](https://badge.fury.io/rb/more_core_extensions.png)](http://badge.fury.io/rb/more_core_extensions)
 [![Build Status](https://travis-ci.org/ManageIQ/more_core_extensions.png?branch=master)](https://travis-ci.org/ManageIQ/more_core_extensions)
 [![Code Climate](https://codeclimate.com/github/ManageIQ/more_core_extensions.png)](https://codeclimate.com/github/ManageIQ/more_core_extensions)
 [![Coverage Status](https://coveralls.io/repos/ManageIQ/more_core_extensions/badge.png)](https://coveralls.io/r/ManageIQ/more_core_extensions)
