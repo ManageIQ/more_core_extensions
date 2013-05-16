@@ -14,3 +14,5 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 end
+
+require 'more_core_extensions/all'
