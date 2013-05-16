@@ -15,4 +15,7 @@ RSpec.configure do |config|
   config.order = 'random'
 end
 
+require 'coveralls'
+Coveralls.wear!
+
 require 'more_core_extensions/all'
