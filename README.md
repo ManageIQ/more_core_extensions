@@ -2,6 +2,39 @@
 
 MoreCoreExtensions are a set of core extensions beyond those provided by ActiveSupport.
 
+## Extensions Provided
+
+* Array
+  * duplicates
+  * include_any?
+  * include_none?
+  * include_all?
+  * random_index
+  * random_element
+  * stretch
+  * stretch!
+  * zip_stretched
+  * tableize
+* Hash
+  * delete_nils
+  * delete_blanks
+  * fetch_path
+  * has_key_path?
+    * include_path?
+    * key_path?
+    * member_path?
+  * store_path
+  * delete_path
+* String
+  * email?
+  * domain_name?
+  * ipv4?
+  * ipv6?
+  * ipaddress?
+  * integer?
+  * guid?
+  * hex_dump
+
 ## Installation
 
 Add this line to your application's Gemfile:
