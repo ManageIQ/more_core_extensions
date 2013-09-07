@@ -36,7 +36,10 @@ module MoreCoreExtensions
         self[key] = value
       else
         child = self[key]
-        child = self[key] = {} unless child.kind_of?(Hash)
+        unless child.kind_of?(Hash)
+          self[key] = self.class.new
+          child = self[key]
+        end
         child.store_path(args[1..-1], value)
       end
     end
