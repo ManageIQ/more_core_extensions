@@ -4,6 +4,7 @@ describe String do
   it '#email?' do
     "john@example.com".should be_email
     "john.doe@example.com".should be_email
+
     "john.doe@examplecom".should_not be_email
     "john.doe@example-com".should_not be_email
     "".should_not be_email
@@ -12,6 +13,7 @@ describe String do
 
   it '#domain_name?' do
     "example.com".should be_domain_name
+
     "example..com".should_not be_domain_name
     "john.doe@example.com".should_not be_domain_name
     "".should_not be_domain_name
@@ -54,8 +56,19 @@ describe String do
     "foo".should_not be_ipaddress
   end
 
+  it "#integer?" do
+    "100".should be_integer
+    "-100".should be_integer
+
+    "".should_not be_integer
+    "100.2".should_not be_integer
+    "A".should_not be_integer
+    "100A".should_not be_integer
+  end
+
   it '#guid?' do
     '01234567-89ab-cdef-abcd-ef0123456789'.should be_guid
+
     '012ZZZ67-89ab-cdef-abcd-ef0123456789'.should_not be_guid
     "".should_not be_guid
     "foo".should_not be_guid

@@ -28,7 +28,7 @@ module MoreCoreExtensions
       ipv4? || ipv6?
     end
 
-    RE_INTEGER = %r{^[0-9]+$}
+    RE_INTEGER = %r{^-?[0-9]+$}
     def integer?
       !!(self =~ RE_INTEGER)
     end
