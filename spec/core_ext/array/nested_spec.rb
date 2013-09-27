@@ -108,6 +108,38 @@ shared_examples_for "core_ext/array/nested" do
 
     include_examples "core_ext/array/nested will not modify arguments", :store_path
   end
+
+  context '#has_key_path?' do
+    it "with various values" do
+      array.has_key_path?(0).should be_true
+      array.has_key_path?(1).should be_true
+      array.has_key_path?(1, 0).should be_false
+      array.has_key_path?(1, 0, 1).should be_false
+      array.has_key_path?(2).should be_true
+      array.has_key_path?(2, 0).should be_true
+      array.has_key_path?(2, 0, 1).should be_false
+      array.has_key_path?(3, 0, 1, 2).should be_false
+      array.has_key_path?(3, 0, 1, 999).should be_false
+      array.has_key_path?(3, 0, 1, 2, 3).should be_false
+      array.has_key_path?(4).should be_true
+      array.has_key_path?(4, 0).should be_true
+      array.has_key_path?(4, 0, 1).should be_false
+      array.has_key_path?(5).should be_true
+      array.has_key_path?(5, 0).should be_false
+      array.has_key_path?(5, 0, 1).should be_false
+    end
+
+    it "with a nil value" do
+      lambda { array.fetch_path(nil) }.should raise_error(ArgumentError)
+      lambda { array.fetch_path(3, nil, 0) }.should raise_error(ArgumentError)
+    end
+
+    it "with invalid values" do
+      lambda { array.has_key_path? }.should raise_error(ArgumentError)
+    end
+
+    include_examples "core_ext/array/nested will not modify arguments", :has_key_path?
+  end
 end
 
 describe Array do
