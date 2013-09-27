@@ -20,15 +20,17 @@ module MoreCoreExtensions
         args = args.first if args.length == 1 && args.first.kind_of?(Array)
 
         key = args.first
+        raise ArgumentError, "must be a number" if self.kind_of?(Array) && !key.kind_of?(Numeric)
+
         if args.length == 1
           self[key] = value
         else
           child = self[key]
-          unless child.kind_of?(Hash)
+          unless child.respond_to?(:store_path)
             self[key] = self.class.new
             child = self[key]
           end
-          child.store_path(args[1..-1], value)
+          child.store_path(args[1..-1].push, value)
         end
       end
     end
