@@ -9,6 +9,16 @@ module MoreCoreExtensions
       self.each_value { |v| v.delete_blank_paths if v.respond_to?(:delete_blank_paths) }
       self.delete_blanks
     end
+
+    def find_path(val)
+      self.each do |k, v|
+        return Array(k) if v == val
+
+        c = v.respond_to?(:find_path) ? v.find_path(val) : []
+        return c.unshift(k) unless c.blank?
+      end
+      []
+    end
   end
 end
 

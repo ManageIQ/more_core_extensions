@@ -160,6 +160,16 @@ shared_examples_for "core_ext/hash/nested" do
     hash.delete_blank_paths
     hash.should == {"a"=>1, "c"=>{"c1"=>2}, "d"=>{"d1"=>{"d2"=>{"d3"=>3}}}}
   end
+
+  context "#find_path" do
+    it "with a real value" do
+      hash.find_path(3).should == ["d", "d1", "d2", "d3"]
+    end
+
+    it "with non-existent value" do
+      hash.find_path(42).should == []
+    end
+  end
 end
 
 describe Hash do
