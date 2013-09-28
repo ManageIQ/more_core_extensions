@@ -143,6 +143,16 @@ shared_examples_for "core_ext/hash/nested" do
   end
 
   context "#delete_path" do
+    it "on a nested hash" do
+      hash.delete_path("d", "d1", "d2", "d3")
+      hash["d"].should == {"d1"=>{"d2"=>{}}}
+    end
+
+    it "with an invalid path" do
+      hash.delete_path("d", "d1", :d)
+      hash["d"].should == {"d1"=>{"d2"=>{"d3"=>3}}}
+    end
+
     include_examples "core_ext/hash/nested will not modify arguments", :delete_path
   end
 end
