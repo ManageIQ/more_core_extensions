@@ -155,6 +155,11 @@ shared_examples_for "core_ext/hash/nested" do
 
     include_examples "core_ext/hash/nested will not modify arguments", :delete_path
   end
+
+  it "#delete_blank_paths" do
+    hash.delete_blank_paths
+    hash.should == {"a"=>1, "c"=>{"c1"=>2}, "d"=>{"d1"=>{"d2"=>{"d3"=>3}}}}
+  end
 end
 
 describe Hash do
