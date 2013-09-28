@@ -1,10 +1,10 @@
 require_relative '../shared/nested'
 
 module MoreCoreExtensions
-  module HashNested
+  module ArrayNested
     include MoreCoreExtensions::Shared::Nested
     extend  MoreCoreExtensions::Shared::Nested
   end
 end
 
-Hash.send(:include, MoreCoreExtensions::HashNested)
+Array.send(:include, MoreCoreExtensions::ArrayNested)
