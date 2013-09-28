@@ -140,6 +140,20 @@ shared_examples_for "core_ext/array/nested" do
 
     include_examples "core_ext/array/nested will not modify arguments", :has_key_path?
   end
+
+  context "#delete_path" do
+    it "on a nested array" do
+      array.delete_path(3, 0, 0, 0)
+      array[3].should == [[[]]]
+    end
+
+    it "with an invalid path" do
+      array.delete_path(3, 0, 5)
+      array[3].should == [[[3]]]
+    end
+
+    include_examples "core_ext/array/nested will not modify arguments", :delete_path
+  end
 end
 
 describe Array do
