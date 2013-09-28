@@ -1,6 +1,7 @@
 module MoreCoreExtensions
   module Shared
     module Nested
+
       def delete_path(*args)
         args = args.first if args.length == 1 && args.first.kind_of?(Array)
         raise ArgumentError, "must pass at least one key" if args.empty?
