@@ -36,7 +36,7 @@ module MoreCoreExtensions
         key = args.first
         raise ArgumentError, "must be a number" if self.kind_of?(Array) && !key.kind_of?(Numeric)
 
-        has_child = self.kind_of?(Array) ? (self.length > 0 && (self.length.succ * -1).upto(self.length).include?(key)) : self.has_key?(key)
+        has_child = self.kind_of?(Array) ? self.includes_index?(key) : self.has_key?(key)
         return has_child if args.length == 1
 
         child = self[key]
