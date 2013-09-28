@@ -29,6 +29,18 @@ module MoreCoreExtensions
     def include_all?(*items)
       (items - self).empty?
     end
+
+    #
+    # Returns whether the Array has a value at the index.
+    #
+    #   [1, 2, 3].includes_index?(-4)  #=> false
+    #   [1, 2, 3].includes_index?(-3)  #=> true
+    #   [1, 2, 3].includes_index?(1)  #=> true
+    #   [1, 2, 3].includes_index?(2)  #=> true
+    #   [1, 2, 3].includes_index?(3)  #=> false
+    def includes_index?(index)
+      (-self.length...self.length).cover?(index)
+    end
   end
 end
 

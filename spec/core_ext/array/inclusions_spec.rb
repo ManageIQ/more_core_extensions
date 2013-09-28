@@ -30,4 +30,12 @@ describe Array do
     ['1', '2', '3'].include_all?('1', '4').should be_false
     ['1', '2', '3'].include_all?('4', '5').should be_false
   end
+
+  it "#includes_index?" do
+    [1, 2, 3].includes_index?(-4).should be_false
+    [1, 2, 3].includes_index?(-3).should be_true
+    [1, 2, 3].includes_index?(1).should be_true
+    [1, 2, 3].includes_index?(2).should be_true
+    [1, 2, 3].includes_index?(3).should be_false
+  end
 end
