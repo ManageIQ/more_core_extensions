@@ -38,10 +38,14 @@ shared_examples_for "core_ext/hash/nested" do
     end
 
     it "with a nil value" do
-      hash.fetch_path(nil).should be_nil
+      hash.fetch_path(nil).should == {nil => 7}
       hash.fetch_path("d", nil, "d1").should be_nil
       hash.fetch_path("e", nil).should == 4
       hash.fetch_path("e", nil, "e1").should be_nil
+    end
+
+    it "with array key" do
+      hash.fetch_path(["h", "i"]).should == 8
     end
 
     it "with invalid values" do
@@ -76,10 +80,10 @@ shared_examples_for "core_ext/hash/nested" do
       hash["a"].should == {"a1" => 3}
     end
 
-    it "with an array of keys" do
+    it "with an array key" do
       h = described_class.new
-      h.store_path(["d", "d1", "d2", "d3"], 3)
-      h.should == {"d" => {"d1" => {"d2" => {"d3" => 3}}}}
+      h.store_path(["d", "d1"], ["d2", "d3"], 3)
+      h.should == {["d", "d1"] => {["d2", "d3"] => 3}}
     end
 
     it "with a nil value" do
@@ -129,7 +133,7 @@ shared_examples_for "core_ext/hash/nested" do
     end
 
     it "with a nil value" do
-      hash.has_key_path?(nil).should be_false
+      hash.has_key_path?(nil).should be_true
       hash.has_key_path?("d", nil, "d1").should be_false
       hash.has_key_path?("e", nil).should be_false
       hash.has_key_path?("e", nil, "e1").should be_false
@@ -158,7 +162,7 @@ shared_examples_for "core_ext/hash/nested" do
 
   it "#delete_blank_paths" do
     hash.delete_blank_paths
-    hash.should == {"a"=>1, "c"=>{"c1"=>2}, "d"=>{"d1"=>{"d2"=>{"d3"=>3}}}}
+    hash.should == {"a"=>1, "c"=>{"c1"=>2}, "d"=>{"d1"=>{"d2"=>{"d3"=>3}}}, nil=>{nil=>7}, ["h", "i"]=>8}
   end
 
   context "#find_path" do
@@ -180,7 +184,9 @@ describe Hash do
       "c" => {"c1" => 2},
       "d" => {"d1" => {"d2" => {"d3" => 3}}},
       "e" => Hash.new(4),
-      "f" => Hash.new { |h, k| h[k] = Hash.new }
+      "f" => Hash.new { |h, k| h[k] = Hash.new },
+      nil => {nil => 7},
+      ["h", "i"] => 8
     }
   end
 
@@ -196,7 +202,9 @@ describe HashWithIndifferentAccess do
       "c" => {"c1" => 2},
       "d" => {"d1" => {"d2" => {"d3" => 3}}},
       "e" => Hash.new(4),
-      "f" => described_class.new { |h, k| h[k] = described_class.new }
+      "f" => described_class.new { |h, k| h[k] = described_class.new },
+      nil => {nil => 7},
+      ["h", "i"] => 8
     )
 
     # NOTE: "f" has to be initialized in that way due to a bug in
