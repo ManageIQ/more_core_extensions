@@ -45,7 +45,7 @@ shared_examples_for "core_ext/hash/nested" do
     end
 
     it "with array key" do
-      hash.fetch_path(["h", "i"]).should == 8
+      hash.fetch_path([["h", "i"]]).should == 8
     end
 
     it "with invalid values" do
@@ -82,7 +82,7 @@ shared_examples_for "core_ext/hash/nested" do
 
     it "with an array key" do
       h = described_class.new
-      h.store_path(["d", "d1"], ["d2", "d3"], 3)
+      h.store_path([["d", "d1"], ["d2", "d3"]], 3)
       h.should == {["d", "d1"] => {["d2", "d3"] => 3}}
     end
 
