@@ -12,7 +12,7 @@ module MoreCoreExtensions
 
     def find_path(val)
       self.each do |k, v|
-        return Array(k) if v == val
+        return [k] if v == val
 
         c = v.respond_to?(:find_path) ? v.find_path(val) : []
         return c.unshift(k) unless c.blank?
