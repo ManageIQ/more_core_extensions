@@ -67,6 +67,17 @@ module MoreCoreExtensions
           child.store_path(args[1..-1].push, value)
         end
       end
+
+      def find_path(val)
+        self.each_with_index do |v, k|
+          k, v = v if self.kind_of?(Hash)
+          return [k] if v == val
+
+          c = v.respond_to?(:find_path) ? v.find_path(val) : []
+          return c.unshift(k) unless c.blank?
+        end
+        []
+      end
     end
   end
 end
