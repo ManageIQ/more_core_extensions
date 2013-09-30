@@ -156,8 +156,7 @@ shared_examples_for "core_ext/array/nested" do
   end
 
   it "#delete_blank_paths" do
-    array.delete_blank_paths
-    array.should == [1, [2], [[[3]]]]
+    array.delete_blank_paths.should == [1, [2], [[[3]]]]
   end
 
   context "#find_path" do

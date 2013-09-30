@@ -161,8 +161,7 @@ shared_examples_for "core_ext/hash/nested" do
   end
 
   it "#delete_blank_paths" do
-    hash.delete_blank_paths
-    hash.should == {"a"=>1, "c"=>{"c1"=>2}, "d"=>{"d1"=>{"d2"=>{"d3"=>3}}}, nil=>{nil=>7}, ["h", "i"]=>8}
+    hash.delete_blank_paths.should == {"a"=>1, "c"=>{"c1"=>2}, "d"=>{"d1"=>{"d2"=>{"d3"=>3}}}, nil=>{nil=>7}, ["h", "i"]=>8}
   end
 
   context "#find_path" do
