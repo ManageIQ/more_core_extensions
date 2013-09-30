@@ -1,6 +1,7 @@
 module MoreCoreExtensions
   module Shared
     module Nested
+
       def delete_path(*args)
         args = args.first if args.length == 1 && args.first.kind_of?(Array)
         raise ArgumentError, "must pass at least one key" if args.empty?
@@ -65,6 +66,17 @@ module MoreCoreExtensions
           end
           child.store_path(args[1..-1].push, value)
         end
+      end
+
+      def find_path(val)
+        self.each_with_index do |v, k|
+          k, v = v if self.kind_of?(Hash)
+          return [k] if v == val
+
+          c = v.respond_to?(:find_path) ? v.find_path(val) : []
+          return c.unshift(k) unless c.blank?
+        end
+        []
       end
     end
   end
