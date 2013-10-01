@@ -154,6 +154,20 @@ shared_examples_for "core_ext/array/nested" do
 
     include_examples "core_ext/array/nested will not modify arguments", :delete_path
   end
+
+  it "#delete_blank_paths" do
+    array.delete_blank_paths.should == [1, [2], [[[3]]]]
+  end
+
+  context "#find_path" do
+    it "with a real value" do
+      array.find_path(3).should == [3, 0, 0, 0]
+    end
+
+    it "with non-existent value" do
+      array.find_path(42).should == []
+    end
+  end
 end
 
 describe Array do
