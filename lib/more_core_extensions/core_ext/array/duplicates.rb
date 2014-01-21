@@ -1,3 +1,5 @@
+require 'more_core_extensions/core_ext/array/element_counts'
+
 module MoreCoreExtensions
   module ArrayDuplicates
     #
@@ -5,7 +7,7 @@ module MoreCoreExtensions
     #
     #   [1, 2, 3, 4, 2, 4].duplicates  #=> [2, 4]
     def duplicates
-      self.inject(Hash.new(0)) { |h, v| h[v] += 1; h }.reject { |k, v| v == 1 }.keys
+      element_counts.reject { |k, v| v == 1 }.keys
     end
   end
 end
