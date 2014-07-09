@@ -192,6 +192,7 @@ describe Hash do
   include_examples "core_ext/hash/nested"
 end
 
+require 'active_support'
 require 'active_support/core_ext/hash'
 describe HashWithIndifferentAccess do
   let(:hash) do
