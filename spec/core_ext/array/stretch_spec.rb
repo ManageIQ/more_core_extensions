@@ -28,8 +28,8 @@ describe Array do
       it "where #{msg}" do
         result = Array.stretch(*test_case)
         result.each_with_index do |r, i|
-          r.should_not equal(test_case[i])
-          r.should == expected[i]
+          expect(r).not_to equal(test_case[i])
+          expect(r).to eq(expected[i])
         end
       end
     end
@@ -40,8 +40,8 @@ describe Array do
       it "where #{msg}" do
         result = Array.stretch!(*test_case)
         result.each_with_index do |r, i|
-          r.should equal(test_case[i])
-          r.should == expected[i]
+          expect(r).to equal(test_case[i])
+          expect(r).to eq(expected[i])
         end
       end
     end
@@ -52,8 +52,8 @@ describe Array do
       it "where #{msg}" do
         receiver, params = test_case[0], test_case[1..-1]
         result = receiver.stretch(*params)
-        result.should_not equal(receiver)
-        result.should == expected[0]
+        expect(result).not_to equal(receiver)
+        expect(result).to eq(expected[0])
       end
     end
   end
@@ -63,8 +63,8 @@ describe Array do
       it "where #{msg}" do
         receiver, params = test_case[0].dup, test_case[1..-1]
         result = receiver.stretch!(*params)
-        result.should equal(receiver)
-        result.should == expected[0]
+        expect(result).to equal(receiver)
+        expect(result).to eq(expected[0])
       end
     end
   end
@@ -89,7 +89,7 @@ describe Array do
   context '#zip_stretched' do
     ZIP_STRETCHED_CASES.each_slice(4) do |msg, receiver, params, expected|
       it "where #{msg}" do
-        receiver.zip_stretched(*params).should == expected
+        expect(receiver.zip_stretched(*params)).to eq(expected)
       end
     end
   end

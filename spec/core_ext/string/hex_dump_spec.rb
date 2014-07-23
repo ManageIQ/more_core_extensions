@@ -5,21 +5,21 @@ describe String do
     let(:str) { "This is a test of the emergency broadcast system. This is only a test." }
 
     it "will handle exceptions" do
-      lambda { "".hex_dump(1, 2) }.should raise_error(ArgumentError)
-      lambda { "".hex_dump(:obj => STDOUT) }.should raise_error(ArgumentError)
-      lambda { "".hex_dump(:meth => :puts) }.should raise_error(ArgumentError)
+      expect { "".hex_dump(1, 2) }.to raise_error(ArgumentError)
+      expect { "".hex_dump(:obj => STDOUT) }.to raise_error(ArgumentError)
+      expect { "".hex_dump(:meth => :puts) }.to raise_error(ArgumentError)
     end
 
     it 'with empty string' do
-      "".hex_dump.should == ""
+      expect("".hex_dump).to eq("")
     end
 
     it 'with a short string' do
-      "This is a test.".hex_dump.should == "0x00000000  54 68 69 73 20 69 73 20 61 20 74 65 73 74 2e     This is a test.\n"
+      expect("This is a test.".hex_dump).to eq("0x00000000  54 68 69 73 20 69 73 20 61 20 74 65 73 74 2e     This is a test.\n")
     end
 
     it 'normal dump' do
-      str.hex_dump.should == <<-EOL
+      expect(str.hex_dump).to eq <<-EOL
 0x00000000  54 68 69 73 20 69 73 20 61 20 74 65 73 74 20 6f  This is a test o
 0x00000010  66 20 74 68 65 20 65 6d 65 72 67 65 6e 63 79 20  f the emergency\040
 0x00000020  62 72 6f 61 64 63 61 73 74 20 73 79 73 74 65 6d  broadcast system
@@ -31,7 +31,7 @@ EOL
     it 'passing object and method' do
       str_out = ''
       str.hex_dump(:obj => str_out, :meth => :<<)
-      str_out.should == <<-EOL
+      expect(str_out).to eq <<-EOL
 0x00000000  54 68 69 73 20 69 73 20 61 20 74 65 73 74 20 6f  This is a test o
 0x00000010  66 20 74 68 65 20 65 6d 65 72 67 65 6e 63 79 20  f the emergency\040
 0x00000020  62 72 6f 61 64 63 61 73 74 20 73 79 73 74 65 6d  broadcast system
@@ -41,7 +41,7 @@ EOL
     end
 
     it 'passing :grouping => 8 option' do
-      str.hex_dump(:grouping => 8).should == <<-EOL
+      expect(str.hex_dump(:grouping => 8)).to eq <<-EOL
 0x00000000  54 68 69 73 20 69 73 20  This is\040
 0x00000008  61 20 74 65 73 74 20 6f  a test o
 0x00000010  66 20 74 68 65 20 65 6d  f the em
@@ -55,7 +55,7 @@ EOL
     end
 
     it 'passing :newline => false option' do
-      str.hex_dump(:newline => false).should == "0x00000000  54 68 69 73 20 69 73 20 61 20 74 65 73 74 20 6f  This is a test o0x00000010  66 20 74 68 65 20 65 6d 65 72 67 65 6e 63 79 20  f the emergency 0x00000020  62 72 6f 61 64 63 61 73 74 20 73 79 73 74 65 6d  broadcast system0x00000030  2e 20 54 68 69 73 20 69 73 20 6f 6e 6c 79 20 61  . This is only a0x00000040  20 74 65 73 74 2e                                 test."
+      expect(str.hex_dump(:newline => false)).to eq("0x00000000  54 68 69 73 20 69 73 20 61 20 74 65 73 74 20 6f  This is a test o0x00000010  66 20 74 68 65 20 65 6d 65 72 67 65 6e 63 79 20  f the emergency 0x00000020  62 72 6f 61 64 63 61 73 74 20 73 79 73 74 65 6d  broadcast system0x00000030  2e 20 54 68 69 73 20 69 73 20 6f 6e 6c 79 20 61  . This is only a0x00000040  20 74 65 73 74 2e                                 test.")
     end
 
     it 'dumping every possible character' do
@@ -80,7 +80,7 @@ EOL
 
       str = ''
       0.upto(255) { |i| str << i.chr }
-      str.hex_dump.should == expected
+      expect(str.hex_dump).to eq(expected)
     end
   end
 end
