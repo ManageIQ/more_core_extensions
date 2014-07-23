@@ -175,7 +175,7 @@ describe Array do
       [2],
       [[[3]]],
       Array.new(4),
-      described_class.new { |i| i = described_class.new }
+      described_class.new
     ]
   end
 
