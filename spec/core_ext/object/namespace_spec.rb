@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe Class do
   before do
     module Aaa

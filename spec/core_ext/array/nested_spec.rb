@@ -1,5 +1,3 @@
-require_relative "../../spec_helper"
-
 shared_examples_for "core_ext/array/nested will not modify arguments" do |meth|
   it "will not modify arguments" do
     args = (meth == :store_path ? [1] : [])

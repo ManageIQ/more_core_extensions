@@ -1,5 +1,3 @@
-require_relative "../../spec_helper"
-
 describe String do
   it '#email?' do
     expect("john@example.com").to be_email
