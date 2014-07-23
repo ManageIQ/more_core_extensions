@@ -7,7 +7,7 @@ module MoreCoreExtensions
     #
     #   [1, 2, 3, 4, 2, 4].duplicates  #=> [2, 4]
     def duplicates
-      element_counts.reject { |k, v| v == 1 }.keys
+      element_counts.select { |_k, v| v > 1 }.keys
     end
   end
 end
