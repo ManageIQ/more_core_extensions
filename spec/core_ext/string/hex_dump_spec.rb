@@ -1,3 +1,4 @@
+# encoding: US-ASCII
 require_relative "../../spec_helper"
 
 describe String do
