@@ -1,5 +1,3 @@
-require_relative "../../spec_helper"
-
 describe Array do
   STRETCH_CASES = [
     # 2 parameter cases

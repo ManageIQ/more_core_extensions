@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe Array do
   it "#element_counts" do
     expect([].element_counts).to eq({})

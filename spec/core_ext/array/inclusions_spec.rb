@@ -1,5 +1,3 @@
-require_relative "../../spec_helper"
-
 describe Array do
   it '#include_any?' do
     expect([1, 2, 3].include_any?(1, 2)).to be_truthy

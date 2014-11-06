@@ -1,6 +1,4 @@
 # encoding: US-ASCII
-require_relative "../../spec_helper"
-
 describe String do
   context '#hex_dump' do
     let(:str) { "This is a test of the emergency broadcast system. This is only a test." }

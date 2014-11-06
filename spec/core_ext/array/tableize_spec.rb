@@ -1,5 +1,3 @@
-require_relative "../../spec_helper"
-
 describe Array do
   context '#tableize' do
     context "on an Array of Arrays" do

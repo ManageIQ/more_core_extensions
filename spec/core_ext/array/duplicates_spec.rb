@@ -1,5 +1,3 @@
-require_relative "../../spec_helper"
-
 describe Array do
   it '#duplicates' do
     expect([1, 2, 3, 4].duplicates).to be_empty

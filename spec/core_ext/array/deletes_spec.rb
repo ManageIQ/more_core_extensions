@@ -1,5 +1,3 @@
-require_relative "../../spec_helper"
-
 describe Array do
   it "#delete_nils" do
     expect([].delete_nils).to eq([])
