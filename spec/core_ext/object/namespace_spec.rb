@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe Class do
   before do
     module Aaa
@@ -14,19 +12,19 @@ describe Class do
 
   context "in_namespace?" do
     it "Class in Module" do
-      Aaa::Bbb::Ccc::Ddd.in_namespace?(Aaa::Bbb).should be_true
+      expect(Aaa::Bbb::Ccc::Ddd.in_namespace?(Aaa::Bbb)).to be_truthy
     end
 
     it "Module in Module" do
-      Aaa::Bbb::Ccc::Eee.in_namespace?("Aaa::Bbb").should be_true
+      expect(Aaa::Bbb::Ccc::Eee.in_namespace?("Aaa::Bbb")).to be_truthy
     end
 
     it "Instance of Class" do
-      Aaa::Bbb::Ccc::Ddd.new.in_namespace?(Aaa::Bbb).should be_true
+      expect(Aaa::Bbb::Ccc::Ddd.new.in_namespace?(Aaa::Bbb)).to be_truthy
     end
 
     it "Not in namespace" do
-      Aaa::Bbb::Ccc::Eee.in_namespace?(Aaa::Bbb::Ccc::Ddd).should be_false
+      expect(Aaa::Bbb::Ccc::Eee.in_namespace?(Aaa::Bbb::Ccc::Ddd)).to be_falsey
     end
   end
 

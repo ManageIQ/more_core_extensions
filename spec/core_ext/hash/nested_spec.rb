@@ -1,5 +1,3 @@
-require_relative "../../spec_helper"
-
 shared_examples_for "core_ext/hash/nested will not modify arguments" do |meth|
   it "will not modify arguments" do
     args = (meth == :store_path ? [1] : [])
@@ -7,49 +5,49 @@ shared_examples_for "core_ext/hash/nested will not modify arguments" do |meth|
     key  = ["d", "d1", "d2", "d3"]
     key2 = key.dup
     hash.send(meth, key2, *args)
-    key2.should == key
+    expect(key2).to eq(key)
 
     key  = ["e", "e1", "e2"]
     key2 = key.dup
     hash.send(meth, key2, *args)
-    key2.should == key
+    expect(key2).to eq(key)
   end
 end
 
 shared_examples_for "core_ext/hash/nested" do
   context '#fetch_path' do
     it "with various values" do
-      hash.fetch_path("a").should == 1
-      hash.fetch_path("b").should == {}
-      hash.fetch_path("b", "b1").should be_nil
-      hash.fetch_path("b", "b1", "b2").should be_nil
-      hash.fetch_path("c").should == {"c1" => 2}
-      hash.fetch_path("c", "c1").should == 2
-      hash.fetch_path("c", "c1", "c2").should be_nil
-      hash.fetch_path("d", "d1", "d2", "d3").should == 3
-      hash.fetch_path("d", "d1", "d2", "dx").should be_nil
-      hash.fetch_path("d", "d1", "d2", "d3", "d4").should be_nil
-      hash.fetch_path("e").should == {}
-      hash.fetch_path("e", "e1").should == 4
-      hash.fetch_path("e", "e1", "e2").should be_nil
-      hash.fetch_path("f").should == {}
-      hash.fetch_path("f", "f1").should == {}
-      hash.fetch_path("f", "f1", "f2").should be_nil
+      expect(hash.fetch_path("a")).to eq(1)
+      expect(hash.fetch_path("b")).to eq({})
+      expect(hash.fetch_path("b", "b1")).to be_nil
+      expect(hash.fetch_path("b", "b1", "b2")).to be_nil
+      expect(hash.fetch_path("c")).to eq({"c1" => 2})
+      expect(hash.fetch_path("c", "c1")).to eq(2)
+      expect(hash.fetch_path("c", "c1", "c2")).to be_nil
+      expect(hash.fetch_path("d", "d1", "d2", "d3")).to eq(3)
+      expect(hash.fetch_path("d", "d1", "d2", "dx")).to be_nil
+      expect(hash.fetch_path("d", "d1", "d2", "d3", "d4")).to be_nil
+      expect(hash.fetch_path("e")).to eq({})
+      expect(hash.fetch_path("e", "e1")).to eq(4)
+      expect(hash.fetch_path("e", "e1", "e2")).to be_nil
+      expect(hash.fetch_path("f")).to eq({})
+      expect(hash.fetch_path("f", "f1")).to eq({})
+      expect(hash.fetch_path("f", "f1", "f2")).to be_nil
     end
 
     it "with a nil value" do
-      hash.fetch_path(nil).should == {nil => 7}
-      hash.fetch_path("d", nil, "d1").should be_nil
-      hash.fetch_path("e", nil).should == 4
-      hash.fetch_path("e", nil, "e1").should be_nil
+      expect(hash.fetch_path(nil)).to eq({nil => 7})
+      expect(hash.fetch_path("d", nil, "d1")).to be_nil
+      expect(hash.fetch_path("e", nil)).to eq(4)
+      expect(hash.fetch_path("e", nil, "e1")).to be_nil
     end
 
     it "with array key" do
-      hash.fetch_path([["h", "i"]]).should == 8
+      expect(hash.fetch_path([["h", "i"]])).to eq(8)
     end
 
     it "with invalid values" do
-      lambda { hash.fetch_path }.should raise_error(ArgumentError)
+      expect { hash.fetch_path }.to raise_error(ArgumentError)
     end
 
     include_examples "core_ext/hash/nested will not modify arguments", :fetch_path
@@ -59,54 +57,54 @@ shared_examples_for "core_ext/hash/nested" do
     it "on an empty hash" do
       h = described_class.new
       h.store_path("a", 1)
-      h.should == {"a" => 1}
+      expect(h).to eq({"a" => 1})
 
       h = described_class.new
       h.store_path("b", "b1", 2)
-      h.should == {"b" => {"b1" => 2}}
+      expect(h).to eq({"b" => {"b1" => 2}})
     end
 
     it "on an existing hash" do
       hash.store_path("b", "b1", 2)
-      hash["b"].should == {"b1" => 2}
+      expect(hash["b"]).to eq({"b1" => 2})
       hash.store_path("c", "c1", 3)
-      hash["c"].should == {"c1" => 3}
+      expect(hash["c"]).to eq({"c1" => 3})
     end
 
     it "on an existing item that is not a hash" do
       hash.store_path("a", 2)
-      hash["a"].should == 2
+      expect(hash["a"]).to eq(2)
       hash.store_path("a", "a1", 3)
-      hash["a"].should == {"a1" => 3}
+      expect(hash["a"]).to eq({"a1" => 3})
     end
 
     it "with an array key" do
       h = described_class.new
       h.store_path([["d", "d1"], ["d2", "d3"]], 3)
-      h.should == {["d", "d1"] => {["d2", "d3"] => 3}}
+      expect(h).to eq({["d", "d1"] => {["d2", "d3"] => 3}})
     end
 
     it "with a nil value" do
       h = described_class.new
       h.store_path("a", "b", nil)
-      h.should == {"a" => {"b" => nil}}
+      expect(h).to eq({"a" => {"b" => nil}})
     end
 
     it "with an Array value" do
       h = described_class.new
       h.store_path("a", "b", ["c", "d"])
-      h.should == {"a" => {"b" => ["c", "d"]}}
+      expect(h).to eq({"a" => {"b" => ["c", "d"]}})
     end
 
     it "with a Hash value" do
       h = described_class.new
       h.store_path("a", "b", {"c" => "d"})
-      h.should == {"a" => {"b" => {"c" => "d"}}}
+      expect(h).to eq({"a" => {"b" => {"c" => "d"}}})
     end
 
     it "with invalid values" do
-      lambda { described_class.new.store_path }.should raise_error(ArgumentError)
-      lambda { described_class.new.store_path(1) }.should raise_error(ArgumentError)
+      expect { described_class.new.store_path }.to raise_error(ArgumentError)
+      expect { described_class.new.store_path(1) }.to raise_error(ArgumentError)
     end
 
     include_examples "core_ext/hash/nested will not modify arguments", :store_path
@@ -114,33 +112,33 @@ shared_examples_for "core_ext/hash/nested" do
 
   context '#has_key_path?' do
     it "with various values" do
-      hash.has_key_path?("a").should be_true
-      hash.has_key_path?("b").should be_true
-      hash.has_key_path?("b", "b1").should be_false
-      hash.has_key_path?("b", "b1", "b2").should be_false
-      hash.has_key_path?("c").should be_true
-      hash.has_key_path?("c", "c1").should be_true
-      hash.has_key_path?("c", "c1", "c2").should be_false
-      hash.has_key_path?("d", "d1", "d2", "d3").should be_true
-      hash.has_key_path?("d", "d1", "d2", "dx").should be_false
-      hash.has_key_path?("d", "d1", "d2", "d3", "d4").should be_false
-      hash.has_key_path?("e").should be_true
-      hash.has_key_path?("e", "e1").should be_false
-      hash.has_key_path?("e", "e1", "e2").should be_false
-      hash.has_key_path?("f").should be_true
-      hash.has_key_path?("f", "f1").should be_false
-      hash.has_key_path?("f", "f1", "f2").should be_false
+      expect(hash.has_key_path?("a")).to be_truthy
+      expect(hash.has_key_path?("b")).to be_truthy
+      expect(hash.has_key_path?("b", "b1")).to be_falsey
+      expect(hash.has_key_path?("b", "b1", "b2")).to be_falsey
+      expect(hash.has_key_path?("c")).to be_truthy
+      expect(hash.has_key_path?("c", "c1")).to be_truthy
+      expect(hash.has_key_path?("c", "c1", "c2")).to be_falsey
+      expect(hash.has_key_path?("d", "d1", "d2", "d3")).to be_truthy
+      expect(hash.has_key_path?("d", "d1", "d2", "dx")).to be_falsey
+      expect(hash.has_key_path?("d", "d1", "d2", "d3", "d4")).to be_falsey
+      expect(hash.has_key_path?("e")).to be_truthy
+      expect(hash.has_key_path?("e", "e1")).to be_falsey
+      expect(hash.has_key_path?("e", "e1", "e2")).to be_falsey
+      expect(hash.has_key_path?("f")).to be_truthy
+      expect(hash.has_key_path?("f", "f1")).to be_falsey
+      expect(hash.has_key_path?("f", "f1", "f2")).to be_falsey
     end
 
     it "with a nil value" do
-      hash.has_key_path?(nil).should be_true
-      hash.has_key_path?("d", nil, "d1").should be_false
-      hash.has_key_path?("e", nil).should be_false
-      hash.has_key_path?("e", nil, "e1").should be_false
+      expect(hash.has_key_path?(nil)).to be_truthy
+      expect(hash.has_key_path?("d", nil, "d1")).to be_falsey
+      expect(hash.has_key_path?("e", nil)).to be_falsey
+      expect(hash.has_key_path?("e", nil, "e1")).to be_falsey
     end
 
     it "with invalid values" do
-      lambda { hash.has_key_path? }.should raise_error(ArgumentError)
+      expect { hash.has_key_path? }.to raise_error(ArgumentError)
     end
 
     include_examples "core_ext/hash/nested will not modify arguments", :has_key_path?
@@ -149,28 +147,28 @@ shared_examples_for "core_ext/hash/nested" do
   context "#delete_path" do
     it "on a nested hash" do
       hash.delete_path("d", "d1", "d2", "d3")
-      hash["d"].should == {"d1"=>{"d2"=>{}}}
+      expect(hash["d"]).to eq({"d1"=>{"d2"=>{}}})
     end
 
     it "with an invalid path" do
       hash.delete_path("d", "d1", :d)
-      hash["d"].should == {"d1"=>{"d2"=>{"d3"=>3}}}
+      expect(hash["d"]).to eq({"d1"=>{"d2"=>{"d3"=>3}}})
     end
 
     include_examples "core_ext/hash/nested will not modify arguments", :delete_path
   end
 
   it "#delete_blank_paths" do
-    hash.delete_blank_paths.should == {"a"=>1, "c"=>{"c1"=>2}, "d"=>{"d1"=>{"d2"=>{"d3"=>3}}}, nil=>{nil=>7}, ["h", "i"]=>8}
+    expect(hash.delete_blank_paths).to eq({"a"=>1, "c"=>{"c1"=>2}, "d"=>{"d1"=>{"d2"=>{"d3"=>3}}}, nil=>{nil=>7}, ["h", "i"]=>8})
   end
 
   context "#find_path" do
     it "with a real value" do
-      hash.find_path(3).should == ["d", "d1", "d2", "d3"]
+      expect(hash.find_path(3)).to eq(["d", "d1", "d2", "d3"])
     end
 
     it "with non-existent value" do
-      hash.find_path(42).should == []
+      expect(hash.find_path(42)).to eq([])
     end
   end
 end
