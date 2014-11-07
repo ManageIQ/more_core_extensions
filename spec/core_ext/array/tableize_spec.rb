@@ -1,5 +1,3 @@
-require_relative "../../spec_helper"
-
 describe Array do
   context '#tableize' do
     context "on an Array of Arrays" do
@@ -11,7 +9,7 @@ describe Array do
  Val1   | Val2
  Value3 | Value4
 EOF
-        test.tableize.should == expected
+        expect(test.tableize).to eq(expected)
       end
 
       it 'with numeric column values right justified' do
@@ -22,7 +20,7 @@ EOF
  Val1   |  200
  Value3 |   30
 EOF
-        test.tableize.should == expected
+        expect(test.tableize).to eq(expected)
       end
 
       it 'with really long column value' do
@@ -33,7 +31,7 @@ EOF
  Val1                      | Val2
  Really Really Long Value3 | Value4
 EOF
-        test.tableize.should == expected
+        expect(test.tableize).to eq(expected)
       end
 
       it 'with really long column value and :max_width option' do
@@ -44,7 +42,7 @@ EOF
  Val1       | Val2
  Really Rea | Value4
 EOF
-        test.tableize(:max_width => 10).should == expected
+        expect(test.tableize(:max_width => 10)).to eq(expected)
       end
 
       it 'with :header => false option' do
@@ -54,7 +52,7 @@ EOF
  Val1   | Val2
  Value3 | Value4
 EOF
-        test.tableize(:header => false).should == expected
+        expect(test.tableize(:header => false)).to eq(expected)
       end
     end
 
@@ -72,8 +70,8 @@ EOF
  Value4 | Value5 | Value6
 EOF
 
-        @str_case.tableize.should == expected
-        @sym_case.tableize.should == expected
+        expect(@str_case.tableize).to eq(expected)
+        expect(@sym_case.tableize).to eq(expected)
       end
 
       context "with :columns option" do
@@ -87,8 +85,8 @@ EOF
         end
 
         it "normal case" do
-          @str_case.tableize(:columns => ["Col3", "Col1", "Col2"]).should == @expected
-          @sym_case.tableize(:columns => [:Col3,  :Col1,  :Col2 ]).should == @expected
+          expect(@str_case.tableize(:columns => ["Col3", "Col1", "Col2"])).to eq(@expected)
+          expect(@sym_case.tableize(:columns => [:Col3,  :Col1,  :Col2 ])).to eq(@expected)
         end
 
         it "with only some values" do
@@ -99,18 +97,18 @@ EOF
  Value6 | Value4
 EOF
 
-          @str_case.tableize(:columns => ["Col3", "Col1"]).should == expected
-          @sym_case.tableize(:columns => [:Col3,  :Col1 ]).should == expected
+          expect(@str_case.tableize(:columns => ["Col3", "Col1"])).to eq(expected)
+          expect(@sym_case.tableize(:columns => [:Col3,  :Col1 ])).to eq(expected)
         end
 
         it "and :leading_columns option" do
-          @str_case.tableize(:columns => ["Col3", "Col1", "Col2"], :leading_columns => ["Col1"]).should == @expected
-          @sym_case.tableize(:columns => [:Col3,  :Col1,  :Col2 ], :leading_columns => [:Col1 ]).should == @expected
+          expect(@str_case.tableize(:columns => ["Col3", "Col1", "Col2"], :leading_columns => ["Col1"])).to eq(@expected)
+          expect(@sym_case.tableize(:columns => [:Col3,  :Col1,  :Col2 ], :leading_columns => [:Col1 ])).to eq(@expected)
         end
 
         it "and :trailing_columns option" do
-          @str_case.tableize(:columns => ["Col3", "Col1", "Col2"], :trailing_columns => ["Col1"]).should == @expected
-          @sym_case.tableize(:columns => [:Col3,  :Col1,  :Col2 ], :trailing_columns => [:Col1 ]).should == @expected
+          expect(@str_case.tableize(:columns => ["Col3", "Col1", "Col2"], :trailing_columns => ["Col1"])).to eq(@expected)
+          expect(@sym_case.tableize(:columns => [:Col3,  :Col1,  :Col2 ], :trailing_columns => [:Col1 ])).to eq(@expected)
         end
       end
 
@@ -122,8 +120,8 @@ EOF
  Value6 | Value5 | Value4
 EOF
 
-        @str_case.tableize(:leading_columns => ["Col3", "Col2"]).should == expected
-        @sym_case.tableize(:leading_columns => [:Col3,  :Col2 ]).should == expected
+        expect(@str_case.tableize(:leading_columns => ["Col3", "Col2"])).to eq(expected)
+        expect(@sym_case.tableize(:leading_columns => [:Col3,  :Col2 ])).to eq(expected)
       end
 
       it "with :trailing_columns option" do
@@ -134,8 +132,8 @@ EOF
  Value4 | Value6 | Value5
 EOF
 
-        @str_case.tableize(:trailing_columns => ["Col3", "Col2"]).should == expected
-        @sym_case.tableize(:trailing_columns => [:Col3,  :Col2 ]).should == expected
+        expect(@str_case.tableize(:trailing_columns => ["Col3", "Col2"])).to eq(expected)
+        expect(@sym_case.tableize(:trailing_columns => [:Col3,  :Col2 ])).to eq(expected)
       end
 
       it "with both :leading_columns and :trailing_columns options" do
@@ -146,13 +144,13 @@ EOF
  Value6 | Value4 | Value5
 EOF
 
-        @str_case.tableize(:leading_columns => ["Col3"], :trailing_columns => ["Col2"]).should == expected
-        @sym_case.tableize(:leading_columns => [:Col3 ], :trailing_columns => [:Col2 ]).should == expected
+        expect(@str_case.tableize(:leading_columns => ["Col3"], :trailing_columns => ["Col2"])).to eq(expected)
+        expect(@sym_case.tableize(:leading_columns => [:Col3 ], :trailing_columns => [:Col2 ])).to eq(expected)
       end
     end
 
     it 'with an invalid receiver' do
-      lambda { [1, 2, 3].tableize }.should raise_error(RuntimeError)
+      expect { [1, 2, 3].tableize }.to raise_error(RuntimeError)
     end
   end
 end

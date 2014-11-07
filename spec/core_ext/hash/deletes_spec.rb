@@ -1,17 +1,15 @@
-require_relative "../../spec_helper"
-
 describe Hash do
   it "#delete_nils" do
-    {}.delete_nils.should == {}
-    {:a => 1}.delete_nils.should == {:a => 1}
-    {:c => nil}.delete_nils.should == {}
-    {:a => 1, :b => [], :c => nil}.delete_nils.should == {:a => 1, :b => []}
+    expect({}.delete_nils).to eq({})
+    expect({:a => 1}.delete_nils).to eq({:a => 1})
+    expect({:c => nil}.delete_nils).to eq({})
+    expect({:a => 1, :b => [], :c => nil}.delete_nils).to eq({:a => 1, :b => []})
   end
 
   it "#delete_blanks" do
-    {}.delete_blanks.should == {}
-    {:a => 1}.delete_blanks.should == {:a => 1}
-    {:c => nil}.delete_blanks.should == {}
-    {:a => 1, :b => [], :c => nil}.delete_blanks.should == {:a => 1}
+    expect({}.delete_blanks).to eq({})
+    expect({:a => 1}.delete_blanks).to eq({:a => 1})
+    expect({:c => nil}.delete_blanks).to eq({})
+    expect({:a => 1, :b => [], :c => nil}.delete_blanks).to eq({:a => 1})
   end
 end

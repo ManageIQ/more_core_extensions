@@ -1,25 +1,23 @@
-require_relative "../../spec_helper"
-
 describe String do
   context '#hex_dump' do
     let(:str) { "This is a test of the emergency broadcast system. This is only a test." }
 
     it "will handle exceptions" do
-      lambda { "".hex_dump(1, 2) }.should raise_error(ArgumentError)
-      lambda { "".hex_dump(:obj => STDOUT) }.should raise_error(ArgumentError)
-      lambda { "".hex_dump(:meth => :puts) }.should raise_error(ArgumentError)
+      expect { "".hex_dump(1, 2) }.to raise_error(ArgumentError)
+      expect { "".hex_dump(:obj => STDOUT) }.to raise_error(ArgumentError)
+      expect { "".hex_dump(:meth => :puts) }.to raise_error(ArgumentError)
     end
 
     it 'with empty string' do
-      "".hex_dump.should == ""
+      expect("".hex_dump).to eq("")
     end
 
     it 'with a short string' do
-      "This is a test.".hex_dump.should == "0x00000000  54 68 69 73 20 69 73 20 61 20 74 65 73 74 2e     This is a test.\n"
+      expect("This is a test.".hex_dump).to eq("0x00000000  54 68 69 73 20 69 73 20 61 20 74 65 73 74 2e     This is a test.\n")
     end
 
     it 'normal dump' do
-      str.hex_dump.should == <<-EOL
+      expect(str.hex_dump).to eq <<-EOL
 0x00000000  54 68 69 73 20 69 73 20 61 20 74 65 73 74 20 6f  This is a test o
 0x00000010  66 20 74 68 65 20 65 6d 65 72 67 65 6e 63 79 20  f the emergency\040
 0x00000020  62 72 6f 61 64 63 61 73 74 20 73 79 73 74 65 6d  broadcast system
@@ -31,7 +29,7 @@ EOL
     it 'passing object and method' do
       str_out = ''
       str.hex_dump(:obj => str_out, :meth => :<<)
-      str_out.should == <<-EOL
+      expect(str_out).to eq <<-EOL
 0x00000000  54 68 69 73 20 69 73 20 61 20 74 65 73 74 20 6f  This is a test o
 0x00000010  66 20 74 68 65 20 65 6d 65 72 67 65 6e 63 79 20  f the emergency\040
 0x00000020  62 72 6f 61 64 63 61 73 74 20 73 79 73 74 65 6d  broadcast system
@@ -41,7 +39,7 @@ EOL
     end
 
     it 'passing :grouping => 8 option' do
-      str.hex_dump(:grouping => 8).should == <<-EOL
+      expect(str.hex_dump(:grouping => 8)).to eq <<-EOL
 0x00000000  54 68 69 73 20 69 73 20  This is\040
 0x00000008  61 20 74 65 73 74 20 6f  a test o
 0x00000010  66 20 74 68 65 20 65 6d  f the em
@@ -55,11 +53,11 @@ EOL
     end
 
     it 'passing :newline => false option' do
-      str.hex_dump(:newline => false).should == "0x00000000  54 68 69 73 20 69 73 20 61 20 74 65 73 74 20 6f  This is a test o0x00000010  66 20 74 68 65 20 65 6d 65 72 67 65 6e 63 79 20  f the emergency 0x00000020  62 72 6f 61 64 63 61 73 74 20 73 79 73 74 65 6d  broadcast system0x00000030  2e 20 54 68 69 73 20 69 73 20 6f 6e 6c 79 20 61  . This is only a0x00000040  20 74 65 73 74 2e                                 test."
+      expect(str.hex_dump(:newline => false)).to eq("0x00000000  54 68 69 73 20 69 73 20 61 20 74 65 73 74 20 6f  This is a test o0x00000010  66 20 74 68 65 20 65 6d 65 72 67 65 6e 63 79 20  f the emergency 0x00000020  62 72 6f 61 64 63 61 73 74 20 73 79 73 74 65 6d  broadcast system0x00000030  2e 20 54 68 69 73 20 69 73 20 6f 6e 6c 79 20 61  . This is only a0x00000040  20 74 65 73 74 2e                                 test.")
     end
 
     it 'dumping every possible character' do
-      expected = <<-EOL
+      expected = (<<-EOL).force_encoding("ASCII-8BIT")
 0x00000000  00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f  ................
 0x00000010  10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f  ................
 0x00000020  20 21 22 23 24 25 26 27 28 29 2a 2b 2c 2d 2e 2f   !\"\#$%&'()*+,-./
@@ -80,7 +78,7 @@ EOL
 
       str = ''
       0.upto(255) { |i| str << i.chr }
-      str.hex_dump.should == expected
+      expect(str.hex_dump).to eq(expected)
     end
   end
 end
