@@ -11,15 +11,7 @@ module MoreCoreExtensions
     #   Aaa::Bbb::Ccc::Eee.in_namespace?(Aaa::Bbb::Ccc::Ddd)  #=> false
     def in_namespace?(val)
       val_ns = val.to_s.split("::")
-      val_ns == namespace[0, val_ns.length]
-    end
-
-    #
-    # Returns an Array with the namespace to an Instance.
-    #
-    #   Aaa::Bbb::Ccc::Ddd.new.namespace  #=> ["Aaa", "Bbb", "Ccc", "Ddd"]
-    def namespace
-      self.class.namespace
+      val_ns == (kind_of?(Module) ? namespace : self.class.namespace)[0, val_ns.length]
     end
   end
 end

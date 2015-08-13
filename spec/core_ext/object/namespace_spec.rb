@@ -27,18 +27,4 @@ describe Class do
       expect(Aaa::Bbb::Ccc::Eee.in_namespace?(Aaa::Bbb::Ccc::Ddd)).to be_falsey
     end
   end
-
-  context "namespace" do
-    it "Class in Module" do
-      expect(Aaa::Bbb::Ccc::Ddd.namespace).to eq(["Aaa", "Bbb", "Ccc", "Ddd"])
-    end
-
-    it "Module in Module" do
-      expect(Aaa::Bbb::Ccc::Eee.namespace).to eq(["Aaa", "Bbb", "Ccc", "Eee"])
-    end
-
-    it "Instance of a Class" do
-      expect(Aaa::Bbb::Ccc::Ddd.new.namespace).to eq(["Aaa", "Bbb", "Ccc", "Ddd"])
-    end
-  end
 end
