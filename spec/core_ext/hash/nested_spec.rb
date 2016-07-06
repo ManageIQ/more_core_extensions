@@ -190,39 +190,43 @@ describe Hash do
   include_examples "core_ext/hash/nested"
 end
 
-require 'active_support'
-require 'active_support/core_ext/hash'
-describe HashWithIndifferentAccess do
-  let(:hash) do
-    described_class.new.merge(
-      "a" => 1,
-      "b" => {},
-      "c" => {"c1" => 2},
-      "d" => {"d1" => {"d2" => {"d3" => 3}}},
-      "e" => Hash.new(4),
-      "f" => described_class.new { |h, k| h[k] = described_class.new },
-      nil => {nil => 7},
-      ["h", "i"] => 8
-    )
+begin
+  require 'active_support'
+  require 'active_support/core_ext/hash'
+  describe HashWithIndifferentAccess do
+    let(:hash) do
+      described_class.new.merge(
+        "a"        => 1,
+        "b"        => {},
+        "c"        => {"c1" => 2},
+        "d"        => {"d1" => {"d2" => {"d3" => 3}}},
+        "e"        => Hash.new(4),
+        "f"        => described_class.new { |h, k| h[k] = described_class.new },
+        nil        => {nil => 7},
+        ["h", "i"] => 8
+      )
 
-    # NOTE: "f" has to be initialized in that way due to a bug in
-    #   HashWithIndifferentAccess and assigning a Hash with a default proc.
-    #
-    # 1.9.3 :001 > h1 = Hash.new
-    # 1.9.3 :002 > h1[:a] = Hash.new { |h, k| h[k] = Hash.new }
-    # 1.9.3 :003 > h1[:a].class
-    #  => Hash
-    # 1.9.3 :004 > h1[:a][:b].class
-    #  => Hash
-    #
-    # 1.9.3 :005 > require 'active_support/all'
-    # 1.9.3 :006 > h2 = HashWithIndifferentAccess.new
-    # 1.9.3 :007 > h2[:a] = Hash.new { |h, k| h[k] = Hash.new }
-    # 1.9.3 :008 > h2[:a].class
-    #  => ActiveSupport::HashWithIndifferentAccess
-    # 1.9.3 :009 > h2[:a][:b].class
-    #  => NilClass
+      # NOTE: "f" has to be initialized in that way due to a bug in
+      #   HashWithIndifferentAccess and assigning a Hash with a default proc.
+      #
+      # 1.9.3 :001 > h1 = Hash.new
+      # 1.9.3 :002 > h1[:a] = Hash.new { |h, k| h[k] = Hash.new }
+      # 1.9.3 :003 > h1[:a].class
+      #  => Hash
+      # 1.9.3 :004 > h1[:a][:b].class
+      #  => Hash
+      #
+      # 1.9.3 :005 > require 'active_support/all'
+      # 1.9.3 :006 > h2 = HashWithIndifferentAccess.new
+      # 1.9.3 :007 > h2[:a] = Hash.new { |h, k| h[k] = Hash.new }
+      # 1.9.3 :008 > h2[:a].class
+      #  => ActiveSupport::HashWithIndifferentAccess
+      # 1.9.3 :009 > h2[:a][:b].class
+      #  => NilClass
+    end
+
+    include_examples "core_ext/hash/nested"
   end
-
-  include_examples "core_ext/hash/nested"
+rescue LoadError
+  # ActiveSupport v5.0.0 requires ruby '>=2.2.2', skip these tests on older rubies.
 end

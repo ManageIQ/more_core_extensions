@@ -6,6 +6,7 @@ rvm:
   - "2.2"
   - ruby-head
   - jruby-head
+before_install: gem install bundler -v ">=1.12"
 matrix:
   allow_failures:
     - rvm: ruby-head
