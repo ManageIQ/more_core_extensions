@@ -1,5 +1,7 @@
 # MoreCoreExtensions
 
+[![Join the chat at https://gitter.im/ManageIQ/more_core_extensions](https://badges.gitter.im/ManageIQ/more_core_extensions.svg)](https://gitter.im/ManageIQ/more_core_extensions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 MoreCoreExtensions are a set of core extensions beyond those provided by ActiveSupport.
 
 [![Gem Version](https://badge.fury.io/rb/more_core_extensions.svg)](http://badge.fury.io/rb/more_core_extensions)
