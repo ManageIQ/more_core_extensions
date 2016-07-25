@@ -1,4 +1,4 @@
-require 'more_core_extensions/core_ext/object/blank'
+require 'active_support/core_ext/object/blank'
 
 module MoreCoreExtensions
   module ArrayDeletes
