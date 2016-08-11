@@ -16,8 +16,9 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
   * delete_nils
   * delete_blanks
   * delete_blank_paths
-  * duplicates
   * delete_path
+  * deviation
+  * duplicates
   * include_any?
   * include_none?
   * include_all?
@@ -27,13 +28,16 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
     * include_path?
     * key_path?
     * member_path?
+  * mean
   * random_index
   * random_element
+  * squares
   * store_path
   * stretch
   * stretch!
   * zip_stretched
   * tableize
+  * variance
 * Hash
   * delete_nils
   * delete_blanks
@@ -46,6 +50,10 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
     * key_path?
     * member_path?
   * store_path
+* Numeric
+  * square
+  * round_down
+  * round_up
 * String
   * email?
   * domain_name?

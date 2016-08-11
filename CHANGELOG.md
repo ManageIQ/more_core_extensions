@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.1.0] - 2016-08-11
+### Additions
+- Add Array #deviation, #mean, #squares, #variance
+- Add Numeric #square, #round_up, #round_down
+
 ## [3.0.0] - 2016-07-07
 ### Breaking changes
 - Drop support for Ruby 1.9.3 [#22]
