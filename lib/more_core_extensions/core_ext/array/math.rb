@@ -8,6 +8,7 @@ module MoreCoreExtensions
     #   [1, 2, 3, 4, 5].mean  #=> 3.0
     #   [1.0, 2.0, 3.0].mean  #=> 2.0
     def mean
+      return 0.0 if empty?
       sum.to_f / length
     end
 
