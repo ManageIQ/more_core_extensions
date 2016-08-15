@@ -13,4 +13,17 @@ describe Array do
     it("#mean")     { expect(integers.mean).to     be_within(0.00001).of(3.00000) }
     it("#variance") { expect(integers.variance).to be_within(0.00001).of(2.50000) }
   end
+
+  context "with a single item" do
+    let(:single_item) { [5] }
+    it("#stddev")   { expect(single_item.stddev).to   eq(0.0) }
+    it("#mean")     { expect(single_item.mean).to     eq(5.0) }
+    it("#variance") { expect(single_item.variance).to eq(0.0) }
+  end
+
+  context "empty array" do
+    it("#stddev")   { expect([].stddev).to   eq(0.0) }
+    it("#mean")     { expect([].mean).to     eq(0.0) }
+    it("#variance") { expect([].variance).to eq(0.0) }
+  end
 end
