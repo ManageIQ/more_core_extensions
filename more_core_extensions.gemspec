@@ -27,7 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec", ">= 3.0"
 
-  # HACK: Rails 5 dropped support for Ruby < 2.2.2
-  active_support_version = "< 5" if Gem::Version.new(RUBY_VERSION) <= Gem::Version.new("2.2.2")
-  spec.add_runtime_dependency "activesupport", active_support_version
+  spec.add_runtime_dependency "activesupport"
 end
