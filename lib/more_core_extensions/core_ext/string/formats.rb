@@ -1,7 +1,8 @@
 module MoreCoreExtensions
   module StringFormats
     # From: Regular Expression Cookbook: 4.1 Validate Email Addresses
-    RE_EMAIL = %r{\A[\w!#$\%&'*+/=?`\{|\}~^-]+(?:\.[\w!#$\%&'*+/=?`\{|\}~^-]+)*@(?:[A-Z0-9-]+\.)+[A-Z]{2,6}\Z}i
+    RE_EMAIL = %r{\A[\w!#$\%&'*+/=?`\{|\}~^-]+(?:\.[\w!#$\%&'*+/=?`\{|\}~^-]+)*@(?:[A-Z0-9-]+\.)+[A-Z]{2,}\Z}i
+
     def email?
       !!(self =~ RE_EMAIL)
     end
