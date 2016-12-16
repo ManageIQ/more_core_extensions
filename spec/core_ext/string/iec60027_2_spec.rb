@@ -1,5 +1,6 @@
 describe String do
   it '#iec60027_2' do
+    expect("1   ".iec_60027_2_to_i).to eq(1)
     expect("1 Ki".iec_60027_2_to_i).to eq(1_024)
     expect("1 Mi".iec_60027_2_to_i).to eq(1_048_576)
     expect("1 Gi".iec_60027_2_to_i).to eq(1_073_741_824)
