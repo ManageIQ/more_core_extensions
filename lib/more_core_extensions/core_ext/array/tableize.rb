@@ -31,59 +31,104 @@ module MoreCoreExtensions
     #    Value3 | Value4
     #
     def tableize(options = {})
-      case self.first
-      when Array; tableize_arrays(options)
-      when Hash;  tableize_hashes(options)
-      else raise "must be an Array of Arrays or Array of Hashes"
-      end
+      Tableizer.new(self, options).tableize
     end
 
-    private
+    # This class is a private implementation and not part of the public API.
+    class Tableizer
+      attr_accessor :target, :options
 
-    def tableize_arrays(options)
-      options[:header] = true unless options.has_key?(:header)
+      def initialize(target, options)
+        @target = target
+        @options = options
+      end
 
-      widths = []
-      justifications = []
-      self.each do |row|
-        row.each_with_index do |field, field_i|
-          widths[field_i] = [widths[field_i].to_i, field.to_s.length].max
-          widths[field_i] = [options[:max_width], widths[field_i].to_i].min if options[:max_width]
-
-          justifications[field_i] = field.kind_of?(Numeric) ? "" : "-"
+      def tableize
+        case target.first
+        when Array then tableize_arrays
+        when Hash  then tableize_hashes
+        else raise "must be an Array of Arrays or Array of Hashes"
         end
       end
 
-      header_separator = widths.collect { |w| "-" * (w + 2) }.join("+")
+      private
 
-      table = []
-      self.each_with_index do |row, row_i|
-        r = []
-        row.each_with_index do |field, field_i|
-          r << sprintf("%0#{justifications[field_i]}#{widths[field_i]}s", field.to_s.gsub(/\n|\r/, '').slice(0, widths[field_i]))
+      def tableize_hashes
+        # Convert the target to an Array of Arrays
+        keys = options[:columns] || columns_from_hash_keys
+        self.target = target.collect { |h| h.values_at(*keys) }.unshift(keys)
+        options[:header] = true
+
+        tableize_arrays
+      end
+
+      def columns_from_hash_keys
+        target.first.keys.sort_by(&:to_s).tap do |keys|
+          apply_leading_columns!(keys)
+          apply_trailing_columns!(keys)
         end
-        r = " #{r.join(' | ')} ".rstrip
-
-        table << r
-        table << header_separator if row_i == 0 && options[:header]
-      end
-      table.join("\n") << "\n"
-    end
-
-    def tableize_hashes(options)
-      if options[:columns]
-        keys = options[:columns]
-      elsif options[:leading_columns] || options[:trailing_columns]
-        keys = self.first.keys.sort_by(&:to_s)
-        options[:leading_columns].reverse.each { |h| keys.unshift(keys.delete(h)) } if options[:leading_columns]
-        options[:trailing_columns].each { |h| keys.push(keys.delete(h)) } if options[:trailing_columns]
-      else
-        keys = self.first.keys.sort_by(&:to_s)
       end
 
-      options = options.dup
-      options[:header] = true
-      self.collect { |h| h.values_at(*keys) }.unshift(keys).tableize(options)
+      def apply_leading_columns!(keys)
+        return unless options[:leading_columns]
+        options[:leading_columns].reverse_each { |h| keys.unshift(keys.delete(h)) }
+      end
+
+      def apply_trailing_columns!(keys)
+        return unless options[:trailing_columns]
+        options[:trailing_columns].each { |h| keys.push(keys.delete(h)) }
+      end
+
+      def tableize_arrays
+        options[:header] = true unless options.key?(:header)
+
+        widths, justifications = widths_and_justifications
+        table = target.collect { |row| format_row(row, widths, justifications) }
+        format_table(table, widths)
+      end
+
+      def widths_and_justifications
+        widths = []
+        justifications = []
+
+        target.each do |row|
+          row.each.with_index do |field, field_i|
+            apply_width!(widths, field, field_i)
+            apply_justification!(justifications, field, field_i)
+          end
+        end
+
+        return widths, justifications
+      end
+
+      def apply_width!(widths, field, field_i)
+        widths[field_i] = [widths[field_i].to_i, field.to_s.length].max
+        widths[field_i] = [options[:max_width], widths[field_i].to_i].min if options[:max_width]
+      end
+
+      def apply_justification!(justifications, field, field_i)
+        justifications[field_i] = field.kind_of?(Numeric) ? "" : "-"
+      end
+
+      def format_row(row, widths, justifications)
+        formatted_fields = row.collect.with_index do |field, field_i|
+          format_field(field, widths[field_i], justifications[field_i])
+        end
+        " #{formatted_fields.join(' | ')} ".rstrip
+      end
+
+      def format_field(field, width, justification)
+        field = field.to_s.gsub(/\n|\r/, '').slice(0, width)
+        "%0#{justification}#{width}s" % field
+      end
+
+      def format_table(table, widths)
+        if options[:header] && table.size > 1
+          header_separator = widths.collect { |w| "-" * (w + 2) }.join("+")
+          table.insert(1, header_separator)
+        end
+        table.join("\n") << "\n"
+      end
     end
   end
 end
