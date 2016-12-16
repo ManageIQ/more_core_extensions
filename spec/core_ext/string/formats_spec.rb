@@ -5,10 +5,7 @@ describe String do
     expect("john.doe@my-company.prestidigitation").to be_email
     expect("john.o'doe@example.com").to be_email
 
-    expect("john,doe@example.com").not_to be_email
     expect("john\ndoe@example.com").not_to be_email
-    expect("john.doe@examplecom").not_to be_email
-    expect("john.doe@example-com").not_to be_email
     expect("").not_to be_email
     expect("foo").not_to be_email
   end
