@@ -1,8 +1,5 @@
-begin
-  require 'coveralls'
-  Coveralls.wear!
-rescue LoadError
-end
+require 'simplecov'
+SimpleCov.start
 
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require "more_core_extensions/all"

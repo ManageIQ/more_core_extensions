@@ -10,6 +10,7 @@ rvm:
 sudo: false
 cache: bundler
 before_install: gem install bundler -v ">= 1.13.6"
+after_script: bundle exec codeclimate-test-reporter
 matrix:
   allow_failures:
     - rvm: ruby-head
