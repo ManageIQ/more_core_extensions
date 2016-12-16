@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.1.1] - 2016-12-16
+### Additions
+- Updated email Regex to be more accurate and slightly less restrictive
+- Fixed issue where email Regex did not support more than 3 char TLDs
+
 ## [3.1.0] - 2016-08-11
 ### Additions
 - Add Array #deviation, #mean, #squares, #variance
