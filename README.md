@@ -59,6 +59,8 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 
 #### Numeric
 
+* core_ext/numeric/clamp.rb
+  * `#clamp` - Clamp a number to a minimum and/or maximum value
 * core_ext/numeric/math.rb
   * `#square` - Returns the square of a Numeric
 * core_ext/numeric/rounding.rb
