@@ -13,11 +13,11 @@ Gem::Specification.new do |spec|
   spec.homepage      = "http://github.com/ManageIQ/more_core_extensions"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -- lib/*`.split("\n")
-  spec.files        += %w[README.md LICENSE.txt]
-  spec.executables   = `git ls-files -- bin/*`.split("\n")
-  spec.test_files    = `git ls-files -- spec/*`.split("\n")
-  spec.test_files   += %w[.rspec]
+  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+    f.match(%r{^(test|spec|features)/})
+  end
+  spec.bindir        = "exe"
+  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
   spec.required_ruby_version = ">= 2.0.0"
