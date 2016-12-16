@@ -1,7 +1,9 @@
 module MoreCoreExtensions
   module Shared
     module Nested
-
+      #
+      # Delete the value at the specified nesting
+      #
       def delete_path(*args)
         args = args.first if args.length == 1 && args.first.kind_of?(Array)
         raise ArgumentError, "must pass at least one key" if args.empty?
@@ -17,6 +19,9 @@ module MoreCoreExtensions
         end
       end
 
+      #
+      # Fetch the value at the specific nesting
+      #
       def fetch_path(*args)
         args = args.first if args.length == 1 && args.first.kind_of?(Array)
         raise ArgumentError, "must pass at least one key" if args.empty?
@@ -30,6 +35,9 @@ module MoreCoreExtensions
         return child.fetch_path(args[1..-1])
       end
 
+      #
+      # Check if a key exists at the specified nesting
+      #
       def has_key_path?(*args)
         args = args.first if args.length == 1 && args.first.kind_of?(Array)
         raise ArgumentError, "must pass at least one key" if args.empty?
@@ -48,6 +56,9 @@ module MoreCoreExtensions
       alias key_path?     has_key_path?
       alias member_path?  has_key_path?
 
+      #
+      # Store a value at the specified nesting
+      #
       def store_path(*args)
         raise ArgumentError, "must pass at least one key, and a value" if args.length < 2
         value = args.pop
@@ -68,6 +79,9 @@ module MoreCoreExtensions
         end
       end
 
+      #
+      # Detect which nesting holds the specified value
+      #
       def find_path(val)
         self.each_with_index do |v, k|
           k, v = v if self.kind_of?(Hash)

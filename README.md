@@ -12,57 +12,88 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 
 ## Extensions Provided
 
-* Array
-  * delete_nils
-  * delete_blanks
-  * delete_blank_paths
-  * delete_path
-  * deviation
-  * duplicates
-  * include_any?
-  * include_none?
-  * include_all?
-  * fetch_path
-  * find_path
-  * has_key_path?
-    * include_path?
-    * key_path?
-    * member_path?
-  * mean
-  * random_index
-  * random_element
-  * squares
-  * store_path
-  * stretch
-  * stretch!
-  * zip_stretched
-  * tableize
-  * variance
-* Hash
-  * delete_nils
-  * delete_blanks
-  * delete_blank_paths
-  * delete_path
-  * fetch_path
-  * find_path
-  * has_key_path?
-    * include_path?
-    * key_path?
-    * member_path?
-  * store_path
-* Numeric
-  * square
-  * round_down
-  * round_up
-* String
-  * email?
-  * domain_name?
-  * ipv4?
-  * ipv6?
-  * ipaddress?
-  * integer?
-  * guid?
-  * hex_dump
+#### Array
+
+* core_ext/array/deletes.rb
+  * `#delete_blanks` - Deletes all items where the value is blank
+  * `#delete_nils` - Deletes all items where the value is nil
+* core_ext/array/duplicates.rb
+  * `#duplicates` - Returns an Array of the duplicates found
+* core_ext/array/element_counts.rb
+  * `#element_counts` - Returns a Hash of each element to the count of those elements
+* core_ext/array/inclusions.rb
+  * `#include_all?` - Returns whether the Array contains all of the items
+  * `#include_any?` - Returns whether the Array contains any of the items
+  * `#include_none?` - Returns whether the Array contains none of the items
+  * `#includes_index?` - Returns whether the Array has a value at the index
+* core_ext/array/math.rb
+  * `#mean` -  Returns the mean of an Array of Numerics
+  * `#stddev` - Returns the standard deviation of an Array of Numerics
+  * `#variance` - Returns the variance of an Array of Numerics
+* core_ext/array/nested.rb (see [Shared](#shared))
+  * `#delete_blank_paths` - Deletes all paths where the value is blank
+* core_ext/array/random.rb
+  * `#random_index` - Picks a valid index randomly
+  * `#random_element` - Picks an element randomly
+* core_ext/array/stretch.rb
+  * `.stretch` - Stretch all argument Arrays to make them the same size
+  * `.stretch!` - Stretch all argument Arrays to make them the same size. Modifies the arguments in place.
+  * `#stretch` - Stretch receiver to be the same size as the longest argument Array.
+  * `#stretch`! - Stretch receiver to be the same size as the longest argument Array.  Modifies the receiver in place.
+  * `#zip_stretched` - Zip arguments stretching the receiver if necessary
+* core_ext/array/tableize.rb
+  * `#tableize` - Create a string representation of receiver in a tabular format if receiver is an Array of Arrays or an Array of Hashes
+
+#### Hash
+
+* core_ext/hash/deletes.rb
+  * `#delete_blanks` - Deletes all keys where the value is blank
+  * `#delete_nils` - Deletes all keys where the value is nil
+* core_ext/hash/nested.rb (see [Shared](#shared))
+  * `#delete_blank_paths` - Deletes all paths where the value is blank
+
+#### Module
+
+* core_ext/module/namespace.rb
+  * `#namespace` - Returns an Array with the namespace to the current Module
+
+#### Numeric
+
+* core_ext/numeric/math.rb
+  * `#square` - Returns the square of a Numeric
+* core_ext/numeric/rounding.rb
+  * `#round_down` - Round down to the specified precision
+  * `#round_up` - Round up to the specified precision
+
+#### Object
+
+* core_ext/module/namespace.rb
+  * `#in_namespace?` - Returns whether or not the object is in the given namespace
+
+#### String
+
+* core_ext/string/formats.rb
+  * `#email?` - Returns whether or not the String is an= valid email
+  * `#domain_name?` - Returns whether or not the String is a valid domain name
+  * `#ipv4?` - Returns whether or not the String is an IPv4 address
+  * `#ipv6?` - Returns whether or not the String is an IPv6 address
+  * `#ipaddress?` - Returns whether or not the String is an IPv4 or IPv6 address
+  * `#integer?` - Returns whether or not the String is an integer
+  * `#guid?` - Returns whether or not the String is a valid GUID
+* core_ext/string/hex_dump.rb
+  * `#hex_dump` - Dumps the string in a hex editor style format
+
+#### Shared
+
+* core_ext/shared/nested.rb
+  * `#delete_path` - Delete the value at the specified nesting
+  * `#fetch_path` - Fetch the value at the specified nesting
+  * `#find_path` - Detect which nesting holds the specified value
+  * `#has_key_path?` - Check if a key exists at the specified nesting
+  * `#include_path?` - alias of `#has_key_path?`
+  * `#key_path?` - alias of `#has_key_path?`
+  * `#member_path?` - alias of `#has_key_path?`
+  * `#store_path` - Store a value at the specified nesting
 
 ## Installation
 
