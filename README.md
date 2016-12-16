@@ -84,6 +84,8 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
   * `#guid?` - Returns whether or not the String is a valid GUID
 * core_ext/string/hex_dump.rb
   * `#hex_dump` - Dumps the string in a hex editor style format
+* core_ext/string/iec60027_2.rb
+  * `#iec_60027_2_to_i` - Convert strings with an IEC60027-2 suffix to an integer
 
 #### Shared
 
