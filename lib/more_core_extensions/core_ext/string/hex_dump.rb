@@ -9,47 +9,59 @@ module MoreCoreExtensions
     #        instead of returning as a string.
     # :meth:: Used in conjunction with _:obj_ to send each line to an object
     #        instead of returning as a string.
-    def hex_dump(*opts)
-      opts = opts[0] if opts.empty? || (opts.length == 1 && opts[0].kind_of?(Hash))
-      raise ArgumentError, "opts must be a Hash" unless opts.nil? || opts.kind_of?(Hash)
+    def hex_dump(options = {})
+      HexDumper.new(self, options).dump
+    end
 
-      opts = {:grouping => 16, :newline => true, :start_pos => 0}.merge!(opts || {})
-      obj, meth, grouping, newline, pos = opts.values_at(:obj, :meth, :grouping, :newline, :start_pos)
-      raise ArgumentError, "obj and meth must both be set, or both not set" if (obj.nil? && !meth.nil?) || (!obj.nil? && meth.nil?)
+    # This class is a private implementation and not part of the public API.
+    class HexDumper
+      attr_reader :target, :options
 
-      row_format = "0x%08x  #{"%02x " * grouping} "
+      DEFAULT_OPTIONS = {
+        :grouping  => 16,
+        :newline   => true,
+        :start_pos => 0
+      }.freeze
 
-      i = 0
-      last_i = self.length - 1
+      def initialize(target, options)
+        @target  = target
+        @options = DEFAULT_OPTIONS.merge(options)
 
-      ret = ''
-      row_vals = []
-      row_chars = ''
+        if !!options[:obj] ^ !!options[:meth] # rubocop:disable Style/DoubleNegation
+          raise ArgumentError, "obj and meth must both be set, or both not set"
+        end
+      end
 
-      self.each_byte do |c|
-        row_vals << c
-        row_chars << (c < 0x20 || (c >= 0x7F && c < 0xA0) ? '.' : c.chr)
+      def dump
+        obj, meth, grouping, pos = options.values_at(:obj, :meth, :grouping, :start_pos)
 
-        if (i + 1) % grouping == 0 || i == last_i
-          row_format = "0x%08x  #{"%02x " * row_vals.length}#{"   " * (grouping - row_vals.length)} " if i == last_i
+        ret = ""
 
-          row_vals.unshift(pos)
-          ret << (row_format % row_vals) << row_chars
-          ret << "\n" if newline
+        target.each_byte.each_slice(grouping) do |bytes|
+          row = format_row(pos, bytes)
+          ret << row
+
           if obj
-            obj.send(meth, ret)
-            ret.replace('')
+            obj.send(meth, row)
+            ret = ""
           end
 
           pos += grouping
-          row_vals.clear
-          row_chars = ''
         end
 
-        i += 1
+        ret
       end
 
-      return ret
+      def format_row(pos, bytes)
+        padding    = "   " * (options[:grouping] - bytes.size)
+        byte_chars = bytes.collect { |byte| row_char(byte) }.join
+        newline    = "\n" if options[:newline]
+        "0x%08x  #{"%02x " * bytes.size}#{padding} " % [pos, *bytes] << "#{byte_chars}#{newline}"
+      end
+
+      def row_char(byte)
+        byte < 0x20 || (byte >= 0x7F && byte < 0xA0) ? '.' : byte.chr
+      end
     end
   end
 end
