@@ -4,6 +4,8 @@ describe String do
     expect("john.doe@example.com").to be_email
     expect("john.doe@my-company.prestidigitation").to be_email
     expect("john.o'doe@example.com").to be_email
+    expect("john.doe@EXAMPLE.COM").to be_email
+    expect("John.Doe@example.com").to be_email
 
     expect("john\ndoe@example.com").not_to be_email
     expect("").not_to be_email

@@ -1,7 +1,7 @@
 module MoreCoreExtensions
   module StringFormats
     # From: http://www.regular-expressions.info/email.html
-    RE_EMAIL =  %r{\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\z}
+    RE_EMAIL =  %r{\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\z}i
 
     def email?
       !!(self =~ RE_EMAIL)
