@@ -4,6 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.2.0] - 2017-03-03
+### Added
+- Added Numeric#clamp [[#30](https://github.com/ManageIQ/more_core_extensions/pull/30)]
+- Added String#to_iec_integer [[#24](https://github.com/ManageIQ/more_core_extensions/pull/24)]
+
+### Changed
+- Updated email Regex to allow mixed case [[#39](https://github.com/ManageIQ/more_core_extensions/pull/39)]
+
 ## [3.1.1] - 2016-12-16
 ### Changed
 - Updated email Regex to be more accurate and slightly less restrictive
@@ -30,6 +38,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added the Change Log!
 
 [Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v3.1.0...HEAD
+[3.2.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.1.1...v3.2.0
 [3.1.1]: https://github.com/ManageIQ/more_core_extensions/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/ManageIQ/more_core_extensions/compare/v2.0.0...v3.0.0
