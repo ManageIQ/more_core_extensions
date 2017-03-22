@@ -7,7 +7,10 @@ rvm:
   - "2.4.0"
   - ruby-head
   - jruby-head
-before_install: gem install bundler -v ">=1.12"
+sudo: false
+cache: bundler
+before_install: gem install bundler -v ">= 1.13.6"
+after_script: bundle exec codeclimate-test-reporter
 matrix:
   allow_failures:
     - rvm: ruby-head
