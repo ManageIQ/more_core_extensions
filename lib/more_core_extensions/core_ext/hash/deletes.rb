@@ -15,6 +15,15 @@ module MoreCoreExtensions
     def delete_blanks
       delete_if { |k, v| v.blank? }
     end
+
+    # Similar to #delete_blanks, but handles nested hashes
+    #
+    #   {:a=>{:b=>{:c=>[]}}, :x=>{:y=>{:z=>1}}}.purge_blanks
+    #   # => {:x=>{:y=>{:z=>1}}}
+    def purge_blanks
+      self.each { |k, v| self[k].purge_blanks if v.kind_of?(Hash) }
+      self.delete_blanks
+    end
   end
 end
 
