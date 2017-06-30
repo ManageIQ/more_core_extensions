@@ -69,6 +69,8 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 
 #### Object
 
+* core_ext/module/descendants.rb
+  * `#descendant_get` - Returns the descendant with a given name
 * core_ext/module/namespace.rb
   * `#in_namespace?` - Returns whether or not the object is in the given namespace
 
