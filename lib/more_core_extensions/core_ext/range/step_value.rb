@@ -32,11 +32,11 @@ module MoreCoreExtensions
           iter = self.end if iter > self.end
         end
 
-        return self
+        self
       else
         ret = []
         step_value(value) { |v| ret << v }
-        return ret
+        ret
       end
     end
   end

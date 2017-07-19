@@ -1,7 +1,7 @@
 describe Range do
   STEP_TIME = Time.local('2010', '12', '18', '12', '34', '56', '7890')
-  STEP_DAY  = 86400
-  STEP_HOUR = 3600
+  STEP_DAY  = 86_400
+  STEP_HOUR = 3_600
 
   STEP_VALUE_CASES = [
     "Integer Range, inclusive, exact ending", (0..100),  25, [0, 25, 50, 75, 100],
@@ -24,7 +24,7 @@ describe Range do
 
     "Backwards invalid Time Range, inclusive", STEP_TIME..(STEP_TIME - 3 * STEP_DAY),  STEP_DAY, [],
     "Backwards invalid Time Range, exclusive", STEP_TIME...(STEP_TIME - 3 * STEP_DAY), STEP_DAY, [],
-  ]
+  ].freeze
 
   context '#step_value with block' do
     STEP_VALUE_CASES.each_slice(4) do |msg, rng, value, expected|
