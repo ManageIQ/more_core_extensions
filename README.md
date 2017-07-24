@@ -51,6 +51,9 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
   * `#delete_nils` - Deletes all keys where the value is nil
 * core_ext/hash/nested.rb (see [Shared](#shared))
   * `#delete_blank_paths` - Deletes all paths where the value is blank
+* core_ext/hash/sorting.rb (see [Shared](#shared))
+  * `#sort!` - Replace the original with the sorted hash
+  * `#sort_by!` - Replace the original with the sorted_by hash
 
 #### Module
 
@@ -74,8 +77,15 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 * core_ext/module/namespace.rb
   * `#in_namespace?` - Returns whether or not the object is in the given namespace
 
+#### Range
+
+* core_ext/range/step_value.rb
+  * `#step_value` - Step through a range at a given increment
+
 #### String
 
+* core_ext/string/decimal_suffix.rb
+  * `#decimal_si_to_f` - Returns a Float based on the number and suffix given
 * core_ext/string/formats.rb
   * `#email?` - Returns whether or not the String is an= valid email
   * `#domain_name?` - Returns whether or not the String is a valid domain name
@@ -88,6 +98,11 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
   * `#hex_dump` - Dumps the string in a hex editor style format
 * core_ext/string/iec60027_2.rb
   * `#iec_60027_2_to_i` - Convert strings with an IEC60027-2 suffix to an integer
+
+#### Symbol
+
+* core_ext/symbol/to_i.rb
+  * `#to_i` - Returns the integer value of a symbol
 
 #### Shared
 

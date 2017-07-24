@@ -4,6 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.3.0] - 2017-07-21
+### Added
+- Added Symbol#to_i [[#49](https://github.com/ManageIQ/more_core_extensions/pull/49)]
+- Added Range#step_value [[#47](https://github.com/ManageIQ/more_core_extensions/pull/47)]
+- Added Hash#sort! & #sort_by! [[#46](https://github.com/ManageIQ/more_core_extensions/pull/46)]
+- Added Object.descendant_get [[#45](https://github.com/ManageIQ/more_core_extensions/pull/45)]
+- Added String#decimal_si_to_f [[#43](https://github.com/ManageIQ/more_core_extensions/pull/43)]
+
 ## [3.2.0] - 2017-03-03
 ### Added
 - Added Numeric#clamp [[#30](https://github.com/ManageIQ/more_core_extensions/pull/30)]
@@ -37,7 +45,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Upgraded to RSpec 3 [[#16](https://github.com/ManageIQ/more_core_extensions/pull/16)]
 - Added the Change Log!
 
-[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v3.1.0...HEAD
+[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v3.3.0...HEAD
+[3.3.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.1.1...v3.2.0
 [3.1.1]: https://github.com/ManageIQ/more_core_extensions/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.0.0...v3.1.0
