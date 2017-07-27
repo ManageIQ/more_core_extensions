@@ -57,6 +57,9 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 
 #### Module
 
+* core_ext/module/cache_with_timeout.rb
+  * `#cache_with_timeout` - Creates singleton methods that cache the results of the given block, but only for a short amount of time.
+  * `.clear_all_cache_with_timeout` - Globally clears all cached values across all classes.
 * core_ext/module/namespace.rb
   * `#namespace` - Returns an Array with the namespace to the current Module
 

@@ -1,0 +1,4 @@
+GlobalVars:
+  AllowedVariables:
+  - $cache_with_timeout
+  - $cache_with_timeout_lock
