@@ -28,5 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", ">= 3.0"
   spec.add_development_dependency "simplecov"
 
-  spec.add_runtime_dependency "activesupport"
+  spec.add_runtime_dependency "activesupport", ">= 4.2.2" # Avoid CVE-2015-3227 - https://hakiri.io/technologies/rails/issues/145c129cb1290c
 end
