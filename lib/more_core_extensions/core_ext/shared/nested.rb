@@ -26,13 +26,17 @@ module MoreCoreExtensions
         args = args.first if args.length == 1 && args.first.kind_of?(Array)
         raise ArgumentError, "must pass at least one key" if args.empty?
 
-        key = args.first
-        raise ArgumentError, "must be a number" if self.kind_of?(Array) && !key.kind_of?(Numeric)
+        result = self
+        args.each_with_index do |key, i|
+          raise ArgumentError, "must be a number" if result.kind_of?(Array) && !key.kind_of?(Numeric)
 
-        child = self[key]
-        return child if args.length == 1
-        return nil unless child.respond_to?(:fetch_path)
-        return child.fetch_path(args[1..-1])
+          result = result[key]
+          if !result.respond_to?(:fetch_path) && (i + 1) != args.size
+            result = nil
+            break
+          end
+        end
+        result
       end
 
       #
