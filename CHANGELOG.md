@@ -4,6 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.4.0] - 2017-08-11
+### Added
+- Added Module#cache_with_timeout [[#51](https://github.com/ManageIQ/more_core_extensions/pull/51)]
+
+### Changed
+- Performance improvements to store_path [[#54](https://github.com/ManageIQ/more_core_extensions/pull/54)]
+  and fetch_path [[#55](https://github.com/ManageIQ/more_core_extensions/pull/55)]
+
 ## [3.3.0] - 2017-07-21
 ### Added
 - Added Symbol#to_i [[#49](https://github.com/ManageIQ/more_core_extensions/pull/49)]
@@ -45,7 +53,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Upgraded to RSpec 3 [[#16](https://github.com/ManageIQ/more_core_extensions/pull/16)]
 - Added the Change Log!
 
-[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v3.3.0...HEAD
+[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v3.4.0...HEAD
+[3.4.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.1.1...v3.2.0
 [3.1.1]: https://github.com/ManageIQ/more_core_extensions/compare/v3.1.0...v3.1.1
