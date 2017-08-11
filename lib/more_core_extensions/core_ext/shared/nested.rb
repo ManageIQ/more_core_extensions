@@ -62,21 +62,25 @@ module MoreCoreExtensions
       def store_path(*args)
         raise ArgumentError, "must pass at least one key, and a value" if args.length < 2
         value = args.pop
-        args = args.first if args.length == 1 && args.first.kind_of?(Array)
+        child = self
+        key   = args.first
 
-        key = args.first
-        raise ArgumentError, "must be a number" if self.kind_of?(Array) && !key.kind_of?(Numeric)
+        if args.length > 1 || args.first.kind_of?(Array)
+          keys = args.first.kind_of?(Array) ? args.first : args
+          keys.each_with_index do |cur_key, i|
+            raise ArgumentError, "must be a number" if child.kind_of?(Array) && !cur_key.kind_of?(Numeric)
+            key = cur_key # keep track of this for value assignment later
+            break if i + 1 == keys.size
 
-        if args.length == 1
-          self[key] = value
-        else
-          child = self[key]
-          unless child.respond_to?(:store_path)
-            self[key] = self.class.new
-            child = self[key]
+            unless child[cur_key].respond_to?(:store_path)
+              child[cur_key] = child.class.new
+            end
+
+            child = child[cur_key]
           end
-          child.store_path(args[1..-1].push, value)
         end
+
+        child[key] = value
       end
 
       #
