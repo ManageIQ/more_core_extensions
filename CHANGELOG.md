@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.5.0] - 2017-12-29
+### Added
+- Added String#hostname? [[#58](https://github.com/ManageIQ/more_core_extensions/pull/58)]
+
 ## [3.4.0] - 2017-08-11
 ### Added
 - Added Module#cache_with_timeout [[#51](https://github.com/ManageIQ/more_core_extensions/pull/51)]
@@ -53,7 +57,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Upgraded to RSpec 3 [[#16](https://github.com/ManageIQ/more_core_extensions/pull/16)]
 - Added the Change Log!
 
-[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v3.4.0...HEAD
+[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v3.5.0...HEAD
+[3.5.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.1.1...v3.2.0
