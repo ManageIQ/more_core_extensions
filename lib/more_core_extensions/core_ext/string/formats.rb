@@ -13,6 +13,12 @@ module MoreCoreExtensions
       !!(self =~ RE_DOMAINNAME)
     end
 
+    # Based on RFC 1034
+    RE_HOSTNAME = %r{^((?![0-9]*$)+(?![0-9]*\.))(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])$}i
+    def hostname?
+      !!(self =~ RE_HOSTNAME)
+    end
+
     # From: Regular Expression Cookbook: 7.16 Matching IPv4 Addresses
     RE_IPV4 = %r{^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$}
     def ipv4?

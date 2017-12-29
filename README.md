@@ -92,6 +92,7 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 * core_ext/string/formats.rb
   * `#email?` - Returns whether or not the String is an= valid email
   * `#domain_name?` - Returns whether or not the String is a valid domain name
+  * `#hostname?` - Returns whether or not the String is a valid hostname
   * `#ipv4?` - Returns whether or not the String is an IPv4 address
   * `#ipv6?` - Returns whether or not the String is an IPv6 address
   * `#ipaddress?` - Returns whether or not the String is an IPv4 or IPv6 address

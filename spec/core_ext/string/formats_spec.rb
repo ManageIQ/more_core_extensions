@@ -21,6 +21,17 @@ describe String do
     expect("foo").not_to be_domain_name
   end
 
+  it '#hostname?' do
+    expect("$").not_to be_hostname
+    expect("-hostname").not_to be_hostname
+    expect("10.10.10.10").not_to be_hostname
+
+    expect("h").to be_hostname
+    expect("hostname").to be_hostname
+    expect("host.name").to be_hostname
+    expect("host-name").to be_hostname
+  end
+
   it '#ipv4?' do
     expect("192.168.252.15").to be_ipv4
 
