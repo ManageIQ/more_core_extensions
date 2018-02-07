@@ -44,4 +44,20 @@ describe String do
       end
     end
   end
+
+  def strip_zeros(digits)
+    expect(digits).to include(".")
+    digits.sub(/^0*/, "").sub(/0*$/, "")
+  end
+
+  INPUTS_AND_EXPECTED_PATTERNS.each do |input_ij, expected_ij|
+    it "#{input_ij.inspect}.decimal_si_to_bigdecimal -> #{expected_ij} for all i,j" do
+      each_ij(input_ij, expected_ij) do |input, expected_as_string|
+        actual = input.decimal_si_to_bigdecimal
+        expect(actual).to be_a(BigDecimal)
+        expect(actual).to eq(BigDecimal(expected_as_string))
+        expect(strip_zeros(actual.to_s("F"))).to eq(strip_zeros(expected_as_string))
+      end
+    end
+  end
 end
