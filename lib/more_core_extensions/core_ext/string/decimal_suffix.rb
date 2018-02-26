@@ -19,7 +19,7 @@ module MoreCoreExtensions
     def decimal_si_to_scientific_notation
       multiplier = DECIMAL_SUFFIXES[self[-1]]
       if multiplier
-        self[0..-2] + multiplier
+        "#{self[0..-2]}#{multiplier}"
       else
         self
       end
