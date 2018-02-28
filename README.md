@@ -88,6 +88,7 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 #### String
 
 * core_ext/string/decimal_suffix.rb
+  * `#decimal_si_to_big_decimal` - Returns a BigDecimal based on the number and suffix given
   * `#decimal_si_to_f` - Returns a Float based on the number and suffix given
 * core_ext/string/formats.rb
   * `#email?` - Returns whether or not the String is an= valid email

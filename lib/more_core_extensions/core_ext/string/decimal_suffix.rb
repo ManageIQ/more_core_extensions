@@ -10,7 +10,7 @@ module MoreCoreExtensions
       Float(decimal_si_to_scientific_notation)
     end
 
-    def decimal_si_to_bigdecimal
+    def decimal_si_to_big_decimal
       BigDecimal(decimal_si_to_scientific_notation)
     end
 
