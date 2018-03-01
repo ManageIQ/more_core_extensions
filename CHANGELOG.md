@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.6.0] - 2018-03-01
+### Added
+- Added String#decimal_si_to_big_decimal [[#59](https://github.com/ManageIQ/more_core_extensions/pull/59)]
+
 ## [3.5.0] - 2017-12-29
 ### Added
 - Added String#hostname? [[#58](https://github.com/ManageIQ/more_core_extensions/pull/58)]
@@ -57,7 +61,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Upgraded to RSpec 3 [[#16](https://github.com/ManageIQ/more_core_extensions/pull/16)]
 - Added the Change Log!
 
-[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v3.5.0...HEAD
+[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v3.6.0...HEAD
+[3.6.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.5.0...v3.6.0
 [3.5.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.2.0...v3.3.0
