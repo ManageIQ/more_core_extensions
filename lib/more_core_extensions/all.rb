@@ -1,6 +1,7 @@
 require 'more_core_extensions/version'
 
 require 'more_core_extensions/core_ext/array'
+require 'more_core_extensions/core_ext/class'
 require 'more_core_extensions/core_ext/hash'
 require 'more_core_extensions/core_ext/module'
 require 'more_core_extensions/core_ext/numeric'

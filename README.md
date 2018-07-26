@@ -44,6 +44,12 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 * core_ext/array/tableize.rb
   * `#tableize` - Create a string representation of receiver in a tabular format if receiver is an Array of Arrays or an Array of Hashes
 
+#### Class
+
+* core_ext/class/hierarchy.rb
+  * `#hierarchy` - Returns a tree-like Hash structure of all descendants.
+  * `#lineage` - Returns an Array of all superclasses.
+
 #### Hash
 
 * core_ext/hash/deletes.rb
