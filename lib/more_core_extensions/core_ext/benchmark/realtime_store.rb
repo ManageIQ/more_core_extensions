@@ -5,6 +5,14 @@ module MoreCoreExtensions
     # Stores the elapsed real time used to execute the given block in the given
     # hash for the given key and returns the result from the block.  If the hash
     # already has a value for that key, the time is accumulated.
+    #
+    #   timings = {}
+    #
+    #   Benchmark.realtime_store(timings, :sleep) { sleep 2; "foo" } # => "foo"
+    #   timings # => {:sleep => 2.00}
+    #
+    #   Benchmark.realtime_store(timings, :sleep) { sleep 2; "bar" } # => "bar"
+    #   timings # => {:sleep => 4.00}
     def realtime_store(hash, key)
       ret = nil
       r0 = Time.now
@@ -22,6 +30,25 @@ module MoreCoreExtensions
     # stored globally, keyed on thread id, and is cleared once the topmost nested
     # call completes.  If the hash already has a value for that key, the time is
     # accumulated.
+    #
+    #   Benchmark.realtime_block(:sleep) do
+    #     sleep 2
+    #     "foo"
+    #   end # => ["foo", {:sleep => 2.00}]
+    #
+    #   Benchmark.realtime_block(:outer_sleep) do
+    #     sleep 2
+    #     Benchmark.realtime_block(:inner_sleep) { sleep 2 }
+    #     "bar"
+    #   end # => ["bar", {:inner_sleep => 2.00, :outer_sleep => 4.00}]
+    #
+    #   Benchmark.realtime_block(:outer_sleep) do
+    #     sleep 2
+    #     2.times do
+    #       Benchmark.realtime_block(:inner_sleep) { sleep 2 }
+    #     end
+    #     "baz"
+    #   end # => ["baz", {:inner_sleep => 4.00, :outer_sleep => 6.00}]
     def realtime_block(key, &block)
       hash = current_realtime
 
@@ -29,7 +56,6 @@ module MoreCoreExtensions
         ret = realtime_store(hash, key, &block)
         return ret, hash
       else
-        # Outermost block.
         begin
           self.current_realtime = hash
           begin
@@ -42,18 +68,12 @@ module MoreCoreExtensions
             delete_current_realtime
           end
         ensure
-          # A second layer of protection in case TimeoutError struck right after
+          # A second layer of protection in case Timeout::Error struck right after
           # setting self.current_realtime, or right before `delete_current_realtime`.
           # In those cases, current_realtime might (wrongly) still exist.
           delete_current_realtime if in_realtime_block?
         end
       end
-    end
-
-    def thread_unique_identifier
-      # Forks inherit the @@realtime_by_tid and parent/child Thread.current.object_id
-      # are equal, so we need to index into the hash with the pid too.
-      "#{Process.pid}-#{Thread.current.object_id}"
     end
 
     def in_realtime_block?
@@ -72,6 +92,13 @@ module MoreCoreExtensions
       @@realtime_by_tid.delete(thread_unique_identifier)
     end
 
+    private
+
+    def thread_unique_identifier
+      # Forks inherit the @@realtime_by_tid and parent/child Thread.current.object_id
+      # are equal, so we need to index into the hash with the pid too.
+      "#{Process.pid}-#{Thread.current.object_id}"
+    end
 
     @@realtime_by_tid = {}
   end

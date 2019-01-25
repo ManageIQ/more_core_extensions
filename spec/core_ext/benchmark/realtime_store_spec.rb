@@ -2,10 +2,10 @@ require 'timecop'
 require 'timeout'
 
 describe Benchmark do
-  after(:each) { Timecop.return }
-  after(:each) do
+  after { Timecop.return }
+  after do
     # Isolate other tests
-    Benchmark.delete_current_realtime if Benchmark.in_realtime_block?
+    Benchmark.delete_current_realtime
   end
 
   it '.realtime_store' do
@@ -20,6 +20,7 @@ describe Benchmark do
       end
       "test"
     end
+
     expect(result).to eq("test")
     expect(timings[:test1]).to be_within(0.5).of(1500)
     expect(timings[:test2]).to be_within(0.5).of(1000)
@@ -28,14 +29,14 @@ describe Benchmark do
 
   it '.realtime_store with an Exception' do
     timings = {}
-    begin
+    expect do
       Benchmark.realtime_store(timings, :test1) do
         Timecop.travel(500)
         raise Exception
       end
-    rescue Exception
-      expect(timings[:test1]).to be_within(0.5).of(500)
-    end
+    end.to raise_error(Exception)
+
+    expect(timings[:test1]).to be_within(0.5).of(500)
   end
 
   it '.realtime_block' do
@@ -49,6 +50,7 @@ describe Benchmark do
       end
       "test"
     end
+
     expect(result).to eq("test")
     expect(timings[:test1]).to be_within(0.5).of(1500)
     expect(timings[:test2]).to be_within(0.5).of(1000)
@@ -66,32 +68,32 @@ describe Benchmark do
   it '.realtime_block with an Exception aborting outermost block' do
     expect do
       Benchmark.realtime_block(:test1) do
-        Timecop.travel(2.1)
+        Timecop.travel(500)
         Benchmark.realtime_block(:test2) do
-          Timecop.travel(5.1)
+          Timecop.travel(500)
           raise Exception
         end
       end
-    end.to raise_exception(Exception)
+    end.to raise_exception(Exception) do |err|
+      expect(err.timings[:test1]).to be_within(0.1).of(1000)
+      expect(err.timings[:test2]).to be_within(0.1).of(500)
+    end
 
     expect(Benchmark.in_realtime_block?).to be_falsey
   end
 
   it '.realtime_block with an Exception caught in inner block' do
-    result = timings = nil
-    expect do
-      result, timings = Benchmark.realtime_block(:test1) do
-        begin
+    result, timings = Benchmark.realtime_block(:test1) do
+      begin
+        Timecop.travel(500)
+        Benchmark.realtime_block(:test2) do
           Timecop.travel(500)
-          Benchmark.realtime_block(:test2) do
-            Timecop.travel(500)
-            raise Exception
-          end
-        rescue Exception
-          "value"
+          raise Exception
         end
+      rescue Exception
+        "value"
       end
-    end.to_not output.to_stderr
+    end
 
     expect(result).to eq("value")
     expect(timings[:test1]).to be_within(0.5).of(1000)
@@ -99,16 +101,15 @@ describe Benchmark do
     expect(Benchmark.in_realtime_block?).to be_falsey
   end
 
-  it "Timeout raising within .realtime_block" do
-    expect(Benchmark.in_realtime_block?).to be_falsey
-
+  it ".realtime_block with a Timeout::Error raised within" do
     # If something left over from previous tests gets GC'd during Timeout, its finalizer may
-    # be interrupted.  For example, interrupted Temfile cleanup may get stuck forever!
+    # be interrupted.  For example, interrupted Tempfile cleanup may get stuck forever!
     # This reduces chance of nasty interactions...
+    expect(Benchmark.in_realtime_block?).to be_falsey
     GC.start
 
     20.times do |i|
-      begin
+      expect do
         # keep entering/exiting, abort ASAP
         Timeout.timeout(1e-9) do
           2_000_000.times do
@@ -119,11 +120,9 @@ describe Benchmark do
             end
           end
         end
-        raise("Completed without Timeout!?  Tip: may result from unclosed Tempfile object.")
-      rescue Timeout::Error => e
-        where = e.backtrace.first(10).join("\n")
-        expect(Benchmark.in_realtime_block?).to be_falsey,
-                                                "failed on #{i}th Timeout, #{e.inspect} interrupted in:\n#{where}"
+        raise "Completed without Timeout!?  Tip: may result from unclosed Tempfile object."
+      end.to raise_error(Timeout::Error) do |e|
+        expect(Benchmark.in_realtime_block?).to be_falsey, "failed on round #{i}, #{e.inspect} interrupted in:\n#{e.backtrace.join("\n")}"
       end
     end
   end
