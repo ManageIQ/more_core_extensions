@@ -64,7 +64,6 @@ describe Benchmark do
   end
 
   it '.realtime_block with an Exception aborting outermost block' do
-    expect(Benchmark.send(:logger)).to receive(:info).with(/Exception in realtime_block :test1 - Timings: {:test2=>5\.\d*, :test1=>7\.\d*}/)
     expect do
       Benchmark.realtime_block(:test1) do
         Timecop.travel(2.1)

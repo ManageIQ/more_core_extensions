@@ -35,9 +35,8 @@ module MoreCoreExtensions
           begin
             ret = realtime_store(hash, key, &block)
             return ret, hash
-          rescue Exception
-            # Don't let timings be lost on exception when there is nobody else to pick them up.
-            logger.info("Exception in realtime_block #{key.inspect} - Timings: #{hash.inspect}")
+          rescue Exception => err # rubocop:disable Lint/RescueException
+            err.define_singleton_method(:timings) { hash } unless err.respond_to?(:timings)
             raise
           ensure
             delete_current_realtime
@@ -73,12 +72,6 @@ module MoreCoreExtensions
       @@realtime_by_tid.delete(thread_unique_identifier)
     end
 
-    private def logger
-      @logger ||= begin
-        require 'logger'
-        $log || Logger.new($stderr)
-      end
-    end
 
     @@realtime_by_tid = {}
   end
