@@ -22,5 +22,8 @@ describe Math do
 
     expect(described_class.linear_regression([1.0, 1.0], [2.0, 2.0])).to eq([1.0, 0.0, 1.0])
     expect(described_class.linear_regression([1.0, 1.0], [1.5, 2.0])).to eq([2.0, -1.0, 1.0])
+
+    expect(described_class.linear_regression([1.0, 1.0])).to be_nil
+    expect(described_class.linear_regression([1.0, 1.0], [1.0, 2.0])).to be_nil
   end
 end
