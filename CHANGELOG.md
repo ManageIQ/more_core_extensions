@@ -4,6 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.7.0] - 2019-02-04
+### Added
+- Added Enumerable#stable_sort_by [[#67](https://github.com/ManageIQ/more_core_extensions/pull/67)]
+- Added Math#slope_y_intercept, #slope_x_intercept, #linear_regression [[#50](https://github.com/ManageIQ/more_core_extensions/pull/50)]
+- Added Benchmark#realtime_store, #realtime_block and helper methods [[#65](https://github.com/ManageIQ/more_core_extensions/pull/65)]
+- Added Class#hierarchy and #lineage [[#61](https://github.com/ManageIQ/more_core_extensions/pull/61)]
+
 ## [3.6.0] - 2018-03-01
 ### Added
 - Added String#decimal_si_to_big_decimal [[#59](https://github.com/ManageIQ/more_core_extensions/pull/59)]
@@ -61,7 +68,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Upgraded to RSpec 3 [[#16](https://github.com/ManageIQ/more_core_extensions/pull/16)]
 - Added the Change Log!
 
-[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v3.6.0...HEAD
+[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v3.7.0...HEAD
+[3.7.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.6.0...v3.7.0
 [3.6.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.5.0...v3.6.0
 [3.5.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.3.0...v3.4.0
