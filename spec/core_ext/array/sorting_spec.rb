@@ -52,14 +52,14 @@ describe Array do
   end
 
   it "sorts stable when order is ascending" do
-    expect(unsorted_enumerable.stable_sort_by([:int])).to eq(int_sorted_array)
-    expect(unsorted_enumerable.stable_sort_by([:string])).to eq(string_sorted_array)
-    expect(unsorted_enumerable.stable_sort_by([:bool])).to eq(bool_sorted_array)
+    expect(unsorted_enumerable.tabular_sort([:int])).to eq(int_sorted_array)
+    expect(unsorted_enumerable.tabular_sort([:string])).to eq(string_sorted_array)
+    expect(unsorted_enumerable.tabular_sort([:bool])).to eq(bool_sorted_array)
   end
 
   it "sorts stable when order is descending" do
-    expect(unsorted_enumerable.stable_sort_by([:int], :descending)).to eq(int_sorted_array.reverse)
-    expect(unsorted_enumerable.stable_sort_by([:string], :descending)).to eq(string_sorted_array.reverse)
-    expect(unsorted_enumerable.stable_sort_by([:bool], :descending)).to eq(bool_sorted_array.reverse)
+    expect(unsorted_enumerable.tabular_sort([:int], :descending)).to eq(int_sorted_array.reverse)
+    expect(unsorted_enumerable.tabular_sort([:string], :descending)).to eq(string_sorted_array.reverse)
+    expect(unsorted_enumerable.tabular_sort([:bool], :descending)).to eq(bool_sorted_array.reverse)
   end
 end

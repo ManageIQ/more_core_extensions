@@ -1,6 +1,6 @@
 module MoreCoreExtensions
   module StableSorting
-    def stable_sort_by(col_names = nil, order = nil, &block)
+    def tabular_sort(col_names = nil, order = nil, &block)
       # stabilizer is needed because of
       # http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/170565
       stabilizer = 0
