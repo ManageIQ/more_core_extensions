@@ -1,4 +1,4 @@
-describe Enumerator do
+describe Array do
   let(:unsorted_enumerable) do
     [
         {:id => :a, :int => 3, :string => "a", :bool => true},
@@ -9,7 +9,7 @@ describe Enumerator do
         {:id => :f, :int => 0, :string => "d", :bool => nil},
         {:id => :g, :int => 1, :string => "E", :bool => true},
         {:id => :h, :int => 2, :string => "e", :bool => true},
-    ].to_enum
+    ]
   end
 
   let(:int_sorted_array) do
