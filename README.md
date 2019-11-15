@@ -49,6 +49,7 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 * core_ext/class/hierarchy.rb
   * `#hierarchy` - Returns a tree-like Hash structure of all descendants.
   * `#lineage` - Returns an Array of all superclasses.
+  * `#leaf_subclasses` - Returns an Array of all descendants which have no subclasses.
 
 #### Hash
 
