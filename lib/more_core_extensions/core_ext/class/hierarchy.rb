@@ -24,6 +24,15 @@ module MoreCoreExtensions
     def lineage
       superclass.nil? ? [] : superclass.lineage.unshift(superclass)
     end
+
+    # Returns an Array of all descendants which have no subclasses
+    #
+    #   require 'socket'
+    #   BasicSocket.leaf_subclasses
+    #   # => [Socket, TCPServer, UDPSocket, UNIXServer]
+    def leaf_subclasses
+      descendants.select { |d| d.subclasses.empty? }
+    end
   end
 end
 

@@ -15,4 +15,8 @@ describe Class do
   it "#lineage" do
     expect(TCPServer.lineage).to eq [TCPSocket, IPSocket, BasicSocket, IO, Object, BasicObject]
   end
+
+  it "#leaf_subclasses" do
+    expect(BasicSocket.leaf_subclasses).to match_array([Socket, TCPServer, UDPSocket, UNIXServer])
+  end
 end
