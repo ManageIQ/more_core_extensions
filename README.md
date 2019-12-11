@@ -14,6 +14,8 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 
 #### Array
 
+* core_ext/array/compact_map.rb
+  * `#compact_map` - Collect non-nil results from the block
 * core_ext/array/deletes.rb
   * `#delete_blanks` - Deletes all items where the value is blank
   * `#delete_nils` - Deletes all items where the value is nil
@@ -35,6 +37,8 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 * core_ext/array/random.rb
   * `#random_index` - Picks a valid index randomly
   * `#random_element` - Picks an element randomly
+* core_ext/array/sorting.rb
+  * `#tabular_sort` - Sorts an Array of Hashes by specific columns
 * core_ext/array/stretch.rb
   * `.stretch` - Stretch all argument Arrays to make them the same size
   * `.stretch!` - Stretch all argument Arrays to make them the same size. Modifies the arguments in place.
