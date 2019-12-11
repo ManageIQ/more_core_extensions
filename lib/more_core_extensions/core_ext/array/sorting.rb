@@ -1,5 +1,27 @@
 module MoreCoreExtensions
   module StableSorting
+    # Sorts an Array of Hashes by specific columns.
+    #
+    # Rows are sorted by +col_names+, if given, otherwise by the given block.
+    #   The +order+ parameter can be given :ascending or :descending and
+    #   defaults to :ascending.
+    #
+    # Note:
+    # - Strings are sorted case-insensitively
+    # - nil values are sorted last
+    # - Boolean values are sorted alphabetically (i.e. false then true)
+    #
+    #   [
+    #     {:col1 => 'b', :col2 => 2},
+    #     {:col1 => 'b', :col2 => 1},
+    #     {:col1 => 'A', :col2 => 1}
+    #   ].tabular_sort([:col1, :col2])
+    #
+    #   # => [
+    #   #   {:col1 => 'A', :col2 => 1},
+    #   #   {:col1 => 'b', :col2 => 1},
+    #   #   {:col1 => 'b', :col2 => 2}
+    #   # ]
     def tabular_sort(col_names = nil, order = nil, &block)
       # stabilizer is needed because of
       # http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/170565

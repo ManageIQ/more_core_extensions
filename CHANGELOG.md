@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.0.0] - 2020-01-31
+### Changed
+- **BREAKING**: Moved Object#descendant_get to Class#descendant_get [[#75](https://github.com/ManageIQ/more_core_extensions/pull/75)]
+- **BREAKING**: Removed deprecated Enumerable#stable_sort_by [[#76](https://github.com/ManageIQ/more_core_extensions/pull/76)]
+
 ## [3.8.0] - 2020-01-31
 ### Changed
 - Renamed Enumerable#stable_sort_by to Array#tabular_sort [[#68](https://github.com/ManageIQ/more_core_extensions/pull/68)]
