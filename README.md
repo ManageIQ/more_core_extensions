@@ -87,6 +87,12 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 * core_ext/module/namespace.rb
   * `#in_namespace?` - Returns whether or not the object is in the given namespace
 
+#### Process
+* core_ext/process/pause_resume.rb
+  * `.pause` - Pauses a process
+  * `.resume` - Resumes a paused process
+  * `.alive?` - Returns whether or not a process is running
+
 #### Range
 
 * core_ext/range/step_value.rb
