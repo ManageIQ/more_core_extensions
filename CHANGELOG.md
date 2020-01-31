@@ -4,6 +4,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.8.0] - 2020-01-31
+### Changed
+- Renamed Enumerable#stable_sort_by to Array#tabular_sort [[#68](https://github.com/ManageIQ/more_core_extensions/pull/68)]
+- Deprecated Enumerable#stable_sort_by [[#74](https://github.com/ManageIQ/more_core_extensions/pull/74)]
+
+### Added
+- Added Class#leaf_subclasses [[#71](https://github.com/ManageIQ/more_core_extensions/pull/71)]
+- Added Array#compact_map [[#63](https://github.com/ManageIQ/more_core_extensions/pull/63)]
+
 ## [3.7.0] - 2019-02-04
 ### Added
 - Added Enumerable#stable_sort_by [[#67](https://github.com/ManageIQ/more_core_extensions/pull/67)]
