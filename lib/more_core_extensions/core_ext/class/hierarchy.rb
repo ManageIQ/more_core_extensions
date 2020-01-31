@@ -3,6 +3,22 @@ require 'active_support/core_ext/object/try'
 
 module MoreCoreExtensions
   module ClassHierarchy
+    # Returns the descendant with a given name
+    #
+    #   require 'socket'
+    #   IO.descendant_get("IO")
+    #   # => IO
+    #   IO.descendant_get("BasicSocket")
+    #   # => BasicSocket
+    #   IO.descendant_get("IPSocket")
+    #   # => IPSocket
+    def descendant_get(desc_name)
+      return self if desc_name == name || desc_name.nil?
+      klass = descendants.find { |desc| desc.name == desc_name }
+      raise ArgumentError, "#{desc_name} is not a descendant of #{name}" unless klass
+      klass
+    end
+
     # Returns a tree-like Hash structure of all descendants.
     #
     #   require 'socket'

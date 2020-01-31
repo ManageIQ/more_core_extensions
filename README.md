@@ -47,6 +47,7 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 #### Class
 
 * core_ext/class/hierarchy.rb
+  * `#descendant_get` - Returns the descendant with a given name
   * `#hierarchy` - Returns a tree-like Hash structure of all descendants.
   * `#lineage` - Returns an Array of all superclasses.
   * `#leaf_subclasses` - Returns an Array of all descendants which have no subclasses.
@@ -82,8 +83,6 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 
 #### Object
 
-* core_ext/module/descendants.rb
-  * `#descendant_get` - Returns the descendant with a given name
 * core_ext/module/namespace.rb
   * `#in_namespace?` - Returns whether or not the object is in the given namespace
 
