@@ -28,9 +28,9 @@ RSpec.describe Process do
     end
 
     it "can pause a running process" do
-      expect(get_process_status(@pid)).not_to equal(paused_status)
+      expect(get_process_status(@pid)).not_to eql(paused_status)
       expect(Process.pause(@pid)).to eql(1)
-      expect(get_process_status(@pid)).to equal(paused_status)
+      expect(get_process_status(@pid)).to eql(paused_status)
     end
 
     it "is a no-op if the process is already paused" do
@@ -55,9 +55,9 @@ RSpec.describe Process do
     end
 
     it "can resume a paused process" do
-      expect(get_process_status(@pid)).to equal(paused_status)
+      expect(get_process_status(@pid)).to eql(paused_status)
       Process.resume(@pid)
-      expect(get_process_status(@pid)).not_to equal(paused_status)
+      expect(get_process_status(@pid)).not_to eql(paused_status)
     end
 
     it "is a no-op if the process is already running" do
