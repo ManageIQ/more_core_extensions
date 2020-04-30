@@ -31,4 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "timecop"
 
   spec.add_runtime_dependency "activesupport"
+  spec.add_runtime_dependency "sync"
 end
