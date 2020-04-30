@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.1.0] - 2020-04-30
+### Added
+- Added Ruby 2.7 support [[#79](https://github.com/ManageIQ/more_core_extensions/pull/79)]
+- Added Process#pause, Process#resume, and Process#alive? [[#73](https://github.com/ManageIQ/more_core_extensions/pull/73)]
+
 ## [4.0.0] - 2020-01-31
 ### Changed
 - **BREAKING**: Moved Object#descendant_get to Class#descendant_get [[#75](https://github.com/ManageIQ/more_core_extensions/pull/75)]
