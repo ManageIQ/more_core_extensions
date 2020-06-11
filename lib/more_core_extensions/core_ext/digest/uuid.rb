@@ -2,7 +2,7 @@ require 'active_support/core_ext/digest/uuid'
 
 module Digest
   module UUID
-    UUID_REGEX_FORMAT = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
+    UUID_REGEX_FORMAT = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.freeze
 
     # Takes a UUID string of varying formats and cleans it. It will strip invalid characters,
     # such as leading and trailing brackets as well as whitespace. The result is a lowercased,
