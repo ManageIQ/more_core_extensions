@@ -30,7 +30,7 @@ RSpec.describe Process do
     it "can pause a running process" do
       expect(get_process_status(@pid)).not_to eql(paused_status)
       expect(Process.pause(@pid)).to eql(1)
-      sleep 0.5 # Give the kernel a chance to update the status
+      sleep 1.1 # Give the kernel a chance to update the status
       expect(get_process_status(@pid)).to eql(paused_status)
     end
 
@@ -58,7 +58,7 @@ RSpec.describe Process do
     it "can resume a paused process" do
       expect(get_process_status(@pid)).to eql(paused_status)
       Process.resume(@pid)
-      sleep 0.5 # Give the kernel a chance to update the status
+      sleep 1.1 # Give the kernel a chance to update the status
       expect(get_process_status(@pid)).not_to eql(paused_status)
     end
 
