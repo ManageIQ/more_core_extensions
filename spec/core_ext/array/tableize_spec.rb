@@ -34,6 +34,17 @@ EOF
         expect(test.tableize).to eq(expected)
       end
 
+      it 'removes color from length' do
+        test = [["Col1", "Col2"], ["Val1", "Val2"], ["\033[31mVal\e[0m", "Value4"]]
+        expected = <<-EOF
+ Col1 | Col2
+------|--------
+ Val1 | Val2
+ \e[31mVal\e[0m | Value4
+EOF
+        expect(test.tableize).to eq(expected)
+      end
+
       it 'with really long column value and :max_width option' do
         test = [["Col1", "Col2"], ["Val1", "Val2"], ["Really Really Long Value3", "Value4"]]
         expected = <<-EOF

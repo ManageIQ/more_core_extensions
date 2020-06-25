@@ -102,7 +102,8 @@ module MoreCoreExtensions
       end
 
       def apply_width!(widths, field, field_i)
-        widths[field_i] = [widths[field_i].to_i, field.to_s.length].max
+        field_length_sans_color_code = field.to_s.gsub(/\e\[[^m]+m/, '').length
+        widths[field_i] = [widths[field_i].to_i, field_length_sans_color_code].max
         widths[field_i] = [options[:max_width], widths[field_i].to_i].min if options[:max_width]
       end
 
@@ -118,7 +119,8 @@ module MoreCoreExtensions
       end
 
       def format_field(field, width, justification)
-        field = field.to_s.gsub(/\n|\r/, '').slice(0, width)
+        field = field.to_s.gsub(/\n|\r/, '')
+        field = field.slice(0, width) unless field.include?("\e")
         "%0#{justification}#{width}s" % field
       end
 
