@@ -1,6 +1,4 @@
 RSpec.describe Process do
-  let(:linux) { Gem::Platform.local.os == 'linux' }
-
   def get_process_status(pid)
     `ps -p #{pid} -o stat=`.chomp.split('').first
   end
