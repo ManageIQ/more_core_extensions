@@ -1,6 +1,6 @@
 RSpec.describe Process do
   def get_process_status(pid)
-    `ps -p #{pid} -o stat=`.chomp.split('').first
+    `ps -p #{pid} -o stat=`[0]
   end
 
   context ".alive?" do
