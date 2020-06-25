@@ -21,15 +21,15 @@ RSpec.describe Process do
     end
 
     it "can pause a running process" do
-      expect(get_process_status(@pid)).not_to eql('T')
+      expect(get_process_status(@pid)).not_to eq('T')
       expect(Process.pause(@pid)).to eql(1)
-      expect(get_process_status(@pid)).to eql('T')
+      expect(get_process_status(@pid)).to eq('T')
     end
 
     it "is a no-op if the process is already paused" do
-      expect(Process.pause(@pid)).to eql(1)
+      expect(Process.pause(@pid)).to eq(1)
       expect { Process.pause(@pid) }.not_to raise_error
-      expect(Process.pause(@pid)).to eql(1)
+      expect(Process.pause(@pid)).to eq(1)
     end
 
     it "returns nil if the process is not running" do
@@ -48,15 +48,15 @@ RSpec.describe Process do
     end
 
     it "can resume a paused process" do
-      expect(get_process_status(@pid)).to eql('T')
+      expect(get_process_status(@pid)).to eq('T')
       Process.resume(@pid)
-      expect(get_process_status(@pid)).not_to eql('T')
+      expect(get_process_status(@pid)).not_to eq('T')
     end
 
     it "is a no-op if the process is already running" do
-      expect(Process.resume(@pid)).to eql(1)
+      expect(Process.resume(@pid)).to eq(1)
       expect { Process.resume(@pid) }.not_to raise_error
-      expect(Process.resume(@pid)).to eql(1)
+      expect(Process.resume(@pid)).to eq(1)
     end
 
     it "returns nil if the process is not running" do
