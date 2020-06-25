@@ -1,15 +1,8 @@
-require 'sys-proctable'
-
 RSpec.describe Process do
   let(:linux) { Gem::Platform.local.os == 'linux' }
 
   def get_process_status(pid)
-    process = Sys::ProcTable.ps(:pid => pid, :smaps => false, :cgroup => false)
-    linux ? process.state : process.status
-  end
-
-  def paused_status
-    linux ? 'T' : 4
+    `ps -p #{pid} -o stat=`.chomp.split('').first
   end
 
   context ".alive?" do
@@ -28,10 +21,9 @@ RSpec.describe Process do
     end
 
     it "can pause a running process" do
-      expect(get_process_status(@pid)).not_to eql(paused_status)
+      expect(get_process_status(@pid)).not_to eql('T')
       expect(Process.pause(@pid)).to eql(1)
-      sleep 1.1 # Give the kernel a chance to update the status
-      expect(get_process_status(@pid)).to eql(paused_status)
+      expect(get_process_status(@pid)).to eql('T')
     end
 
     it "is a no-op if the process is already paused" do
@@ -56,10 +48,9 @@ RSpec.describe Process do
     end
 
     it "can resume a paused process" do
-      expect(get_process_status(@pid)).to eql(paused_status)
+      expect(get_process_status(@pid)).to eql('T')
       Process.resume(@pid)
-      sleep 1.1 # Give the kernel a chance to update the status
-      expect(get_process_status(@pid)).not_to eql(paused_status)
+      expect(get_process_status(@pid)).not_to eql('T')
     end
 
     it "is a no-op if the process is already running" do
