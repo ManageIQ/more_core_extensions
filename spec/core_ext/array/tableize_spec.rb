@@ -5,7 +5,7 @@ describe Array do
         test = [["Col1", "Col2"], ["Val1", "Val2"], ["Value3", "Value4"]]
         expected = <<-EOF
  Col1   | Col2
---------+--------
+--------|--------
  Val1   | Val2
  Value3 | Value4
 EOF
@@ -16,7 +16,7 @@ EOF
         test = [["Col1", "Col2"], ["Val1", 200], ["Value3", 30]]
         expected = <<-EOF
  Col1   | Col2
---------+------
+--------|------
  Val1   |  200
  Value3 |   30
 EOF
@@ -27,7 +27,7 @@ EOF
         test = [["Col1", "Col2"], ["Val1", "Val2"], ["Really Really Long Value3", "Value4"]]
         expected = <<-EOF
  Col1                      | Col2
----------------------------+--------
+---------------------------|--------
  Val1                      | Val2
  Really Really Long Value3 | Value4
 EOF
@@ -38,7 +38,7 @@ EOF
         test = [["Col1", "Col2"], ["Val1", "Val2"], ["Really Really Long Value3", "Value4"]]
         expected = <<-EOF
  Col1       | Col2
-------------+--------
+------------|--------
  Val1       | Val2
  Really Rea | Value4
 EOF
@@ -65,7 +65,7 @@ EOF
       it "normal case" do
           expected = <<-EOF
  Col1   | Col2   | Col3
---------+--------+--------
+--------|--------|--------
  Val1   | Val2   | Val3
  Value4 | Value5 | Value6
 EOF
@@ -78,7 +78,7 @@ EOF
         before do
           @expected = <<-EOF
  Col3   | Col1   | Col2
---------+--------+--------
+--------|--------|--------
  Val3   | Val1   | Val2
  Value6 | Value4 | Value5
 EOF
@@ -92,7 +92,7 @@ EOF
         it "with only some values" do
           expected = <<-EOF
  Col3   | Col1
---------+--------
+--------|--------
  Val3   | Val1
  Value6 | Value4
 EOF
@@ -115,7 +115,7 @@ EOF
       it "with :leading_columns option" do
         expected = <<-EOF
  Col3   | Col2   | Col1
---------+--------+--------
+--------|--------|--------
  Val3   | Val2   | Val1
  Value6 | Value5 | Value4
 EOF
@@ -127,7 +127,7 @@ EOF
       it "with :trailing_columns option" do
         expected = <<-EOF
  Col1   | Col3   | Col2
---------+--------+--------
+--------|--------|--------
  Val1   | Val3   | Val2
  Value4 | Value6 | Value5
 EOF
@@ -139,7 +139,7 @@ EOF
       it "with both :leading_columns and :trailing_columns options" do
         expected = <<-EOF
  Col3   | Col1   | Col2
---------+--------+--------
+--------|--------|--------
  Val3   | Val1   | Val2
  Value6 | Value4 | Value5
 EOF

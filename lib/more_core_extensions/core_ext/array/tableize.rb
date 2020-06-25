@@ -124,7 +124,7 @@ module MoreCoreExtensions
 
       def format_table(table, widths)
         if options[:header] && table.size > 1
-          header_separator = widths.collect { |w| "-" * (w + 2) }.join("+")
+          header_separator = widths.collect { |w| "-" * (w + 2) }.join("|")
           table.insert(1, header_separator)
         end
         table.join("\n") << "\n"
