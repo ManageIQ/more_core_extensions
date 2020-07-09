@@ -29,6 +29,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "timecop"
 
-  spec.add_runtime_dependency "activesupport"
+  spec.add_runtime_dependency "activesupport", "~>5.2.4", ">=5.2.4.3"
   spec.add_runtime_dependency "sync"
 end
