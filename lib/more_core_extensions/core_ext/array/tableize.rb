@@ -53,6 +53,9 @@ module MoreCoreExtensions
 
       private
 
+      ANSI_ESCAPE_SEQUENCE = /\e\[[^m]+m/.freeze
+      ANSI_RESET = "\e[0m".freeze
+
       def tableize_hashes
         # Convert the target to an Array of Arrays
         keys = options[:columns] || columns_from_hash_keys
@@ -102,7 +105,7 @@ module MoreCoreExtensions
       end
 
       def apply_width!(widths, field, field_i)
-        widths[field_i] = [widths[field_i].to_i, field.to_s.length].max
+        widths[field_i] = [widths[field_i].to_i, ansi_strip(field.to_s).length].max
         widths[field_i] = [options[:max_width], widths[field_i].to_i].min if options[:max_width]
       end
 
@@ -118,8 +121,39 @@ module MoreCoreExtensions
       end
 
       def format_field(field, width, justification)
-        field = field.to_s.gsub(/\n|\r/, '').slice(0, width)
+        field = field.to_s.gsub(/\n|\r/, '')
+        field = ansi_truncate(field, width)
         "%0#{justification}#{width}s" % field
+      end
+
+      def ansi_escapes?(field)
+        !!field.match(ANSI_ESCAPE_SEQUENCE)
+      end
+
+      def ansi_escapes(field)
+        field.to_enum(:scan, ANSI_ESCAPE_SEQUENCE).map { Regexp.last_match }
+      end
+
+      def ansi_strip(field)
+        field.gsub(ANSI_ESCAPE_SEQUENCE, '')
+      end
+
+      def ansi_truncate(field, width)
+        escapes = ansi_escapes(field)
+        if escapes.none?
+          field.slice(0, width)
+        else
+          escape_widths = 0
+          escapes.each do |e|
+            break if e.offset(0).first - escape_widths >= width
+
+            escape_widths += e[0].size
+          end
+
+          field = field.slice(0, width + escape_widths)
+          field << ANSI_RESET if ansi_escapes?(field) && !field.end_with?(ANSI_RESET)
+          field
+        end
       end
 
       def format_table(table, widths)
