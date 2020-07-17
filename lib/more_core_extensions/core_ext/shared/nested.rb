@@ -100,6 +100,21 @@ module MoreCoreExtensions
         end
         []
       end
+
+      # Create a deep clone of the object. This is similar to deep_dup
+      # but uses a Marshal based approach instead.
+      #
+      #   h1 = {:a => "hello"}
+      #   h2 = h1.deep_clone
+      #
+      #   h1[:a] << " world"
+      #
+      #   h1[:a] # "hello world"
+      #   h2[:a] # "hello"
+      #
+      def deep_clone
+        Marshal.load(Marshal.dump(self))
+      end
     end
   end
 end
