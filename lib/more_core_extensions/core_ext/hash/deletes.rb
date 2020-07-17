@@ -15,6 +15,16 @@ module MoreCoreExtensions
     def delete_blanks
       delete_if { |k, v| v.blank? }
     end
+
+    # Deletes all keys and subkeys that match +key+.
+    #
+    #   {:a => {:b => 2, :c => 3}}.deep_delete(:b) # => {:a => {:c => 3}}
+    #
+    def deep_delete(key)
+      key = [key] unless key.kind_of?(Array)
+      key.each { |k| delete(k) }
+      each_value { |v| v.deep_delete(key) if v.respond_to?(:deep_delete) }
+    end
   end
 end
 
