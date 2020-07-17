@@ -57,9 +57,6 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
   * `#lineage` - Returns an Array of all superclasses.
   * `#leaf_subclasses` - Returns an Array of all descendants which have no subclasses.
 
-#### Enumerable
-* core_ext/enumerable/deep_clone.rb
-
 #### Hash
 
 * core_ext/hash/deletes.rb
