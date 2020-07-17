@@ -19,6 +19,7 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 * core_ext/array/deletes.rb
   * `#delete_blanks` - Deletes all items where the value is blank
   * `#delete_nils` - Deletes all items where the value is nil
+  * `#deep_delete` - Deletes nested hash key elements
 * core_ext/array/duplicates.rb
   * `#duplicates` - Returns an Array of the duplicates found
 * core_ext/array/element_counts.rb
@@ -56,11 +57,16 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
   * `#lineage` - Returns an Array of all superclasses.
   * `#leaf_subclasses` - Returns an Array of all descendants which have no subclasses.
 
+#### Enumerable
+* core_ext/enumerable/deep_clone.rb
+  * `#deep_clone` - Performs a Marshal based deep clone (Array, Hash).
+
 #### Hash
 
 * core_ext/hash/deletes.rb
   * `#delete_blanks` - Deletes all keys where the value is blank
   * `#delete_nils` - Deletes all keys where the value is nil
+  * `#deep_delete` - Deletes nested hash key elements
 * core_ext/hash/nested.rb (see [Shared](#shared))
   * `#delete_blank_paths` - Deletes all paths where the value is blank
 * core_ext/hash/sorting.rb (see [Shared](#shared))
