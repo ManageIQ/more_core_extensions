@@ -18,7 +18,7 @@ module MoreCoreExtensions
 
     # Deletes all keys and subkeys that match +key+.
     #
-    # [{:a => {:b => 2, :c => 3}}].deep_delete(:b) # => [{:a => {:c => 3}}]
+    #   [{:a => {:b => 2, :c => 3}}].deep_delete(:b) # => [{:a => {:c => 3}}]
     #
     def deep_delete(key)
       each { |i| i.deep_delete(key) if i.respond_to?(:deep_delete) }

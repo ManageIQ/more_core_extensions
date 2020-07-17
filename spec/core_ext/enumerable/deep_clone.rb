@@ -1,7 +1,7 @@
 describe Enumerable do
   before do
-    @nested_hash  = {'outer' => {:name => 'test', :value => [1,2], :token => 1}}
-    @nested_array = [{'outer' => {:name => 'test', :value => [1,2], :token => 1}}]
+    @nested_hash  = {'outer' => {:name => 'test', :value => [1, 2], :token => 1}}
+    @nested_array = [{'outer' => {:name => 'test', :value => [1, 2], :token => 1}}]
   end
 
   context "Hash#deep_clone" do
