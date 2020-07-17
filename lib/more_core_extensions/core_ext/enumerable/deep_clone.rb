@@ -17,4 +17,5 @@ module MoreCoreExtensions
   end
 end
 
-Enumerable.send(:include, MoreCoreExtensions::EnumerableDeepClone)
+Array.send(:include, MoreCoreExtensions::EnumerableDeepClone)
+Hash.send(:include, MoreCoreExtensions::EnumerableDeepClone)
