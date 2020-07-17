@@ -59,7 +59,6 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 
 #### Enumerable
 * core_ext/enumerable/deep_clone.rb
-  * `#deep_clone` - Performs a Marshal based deep clone (Array, Hash).
 
 #### Hash
 
@@ -135,6 +134,7 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 #### Shared
 
 * core_ext/shared/nested.rb
+  * `#deep_clone` - Performs a Marshal based deep clone
   * `#delete_path` - Delete the value at the specified nesting
   * `#fetch_path` - Fetch the value at the specified nesting
   * `#find_path` - Detect which nesting holds the specified value
