@@ -4,6 +4,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.2.0] - 2020-07-20
+### Added
+- Add bundler-inject allowing developers to override dependencies [[#89](https://github.com/ManageIQ/more_core_extensions/pull/89)]
+- Add Array and Hash #deep_clone and #deep_delete [[#91](https://github.com/ManageIQ/more_core_extensions/pull/91)]
+- Add Digest::UUID.clean to properly format UUID strings [[#81](https://github.com/ManageIQ/more_core_extensions/pull/81)]
+
+###Changed
+- Update ArrayTableize to properly set field width for color text [[#87](https://github.com/ManageIQ/more_core_extensions/pull/87)]
+- Change Array#format_table header output to markdown vs postgres [[#83](https://github.com/ManageIQ/more_core_extensions/pull/83)]
+
 ## [4.1.0] - 2020-04-30
 ### Added
 - Added Ruby 2.7 support [[#79](https://github.com/ManageIQ/more_core_extensions/pull/79)]
@@ -87,7 +97,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Upgraded to RSpec 3 [[#16](https://github.com/ManageIQ/more_core_extensions/pull/16)]
 - Added the Change Log!
 
-[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v4.1.0...HEAD
+[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v4.2.0...HEAD
+[4.2.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.1.0...v4.2.0
 [4.1.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.8.0...v4.0.0
 [3.8.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.7.0...v3.8.0
