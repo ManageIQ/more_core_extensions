@@ -10,7 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Add Array and Hash #deep_clone and #deep_delete [[#91](https://github.com/ManageIQ/more_core_extensions/pull/91)]
 - Add Digest::UUID.clean to properly format UUID strings [[#81](https://github.com/ManageIQ/more_core_extensions/pull/81)]
 
-###Changed
+### Changed
 - Update ArrayTableize to properly set field width for color text [[#87](https://github.com/ManageIQ/more_core_extensions/pull/87)]
 - Change Array#format_table header output to markdown vs postgres [[#83](https://github.com/ManageIQ/more_core_extensions/pull/83)]
 
