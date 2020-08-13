@@ -1,8 +1,8 @@
 require 'time'
 
 RSpec.describe Time do
-  let(:wtime) { 131172192730000000 }
-  let(:time) { Time.parse("2016-09-01 16:01:13 UTC") }
+  let(:wtime) { 131_172_192_730_000_000 }
+  let(:time) { Time.parse("2016-09-01 16:01:13 UTC").utc }
 
   context '.wtime_to_time' do
     it "returns the expected time" do
