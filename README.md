@@ -122,6 +122,10 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
   * `#hex_dump` - Dumps the string in a hex editor style format
 * core_ext/string/iec60027_2.rb
   * `#iec_60027_2_to_i` - Convert strings with an IEC60027-2 suffix to an integer
+* core_ext/string/to_i_with_method.rb
+  * `#to_f_with_method` - Converts to a Float while also evaluating a method invocation
+  * `#to_i_with_method` - Converts to an Integer while also evaluating a method invocation
+  * `#number_with_method?` - Determines if the object contains a number with a method invocation
 
 #### Symbol
 
