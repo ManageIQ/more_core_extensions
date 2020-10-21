@@ -19,6 +19,7 @@ module MoreCoreExtensions
       result = send(arg)
       return nil    if result.nil?
       return result if args.empty?
+
       result.deep_send(args)
     end
   end
