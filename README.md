@@ -89,6 +89,8 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 
 #### Object
 
+* core_ext/module/deep_send.rb
+  * `#deep_send` - Invokes the specified methods continuously, unless encountering a nil value.
 * core_ext/module/namespace.rb
   * `#in_namespace?` - Returns whether or not the object is in the given namespace
 
