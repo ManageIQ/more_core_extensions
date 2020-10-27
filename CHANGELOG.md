@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.3.0] - 2020-10-27
+### Added
+- Add String#to_i_with_method and friends [[#95](https://github.com/ManageIQ/more_core_extensions/pull/95)]
+- Add Object#deep_send [[#94](https://github.com/ManageIQ/more_core_extensions/pull/94)]
+
 ## [4.2.0] - 2020-07-20
 ### Added
 - Add bundler-inject allowing developers to override dependencies [[#89](https://github.com/ManageIQ/more_core_extensions/pull/89)]
@@ -97,7 +102,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Upgraded to RSpec 3 [[#16](https://github.com/ManageIQ/more_core_extensions/pull/16)]
 - Added the Change Log!
 
-[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v4.2.0...HEAD
+[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v4.3.0...HEAD
+[4.3.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.2.0...v4.3.0
 [4.2.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.1.0...v4.2.0
 [4.1.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/ManageIQ/more_core_extensions/compare/v3.8.0...v4.0.0
