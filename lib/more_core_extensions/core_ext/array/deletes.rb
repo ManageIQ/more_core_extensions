@@ -6,14 +6,14 @@ module MoreCoreExtensions
     #
     #   [1, [], nil].delete_nils # => [1, []]
     def delete_nils
-      delete_if { |i| i.nil? }
+      delete_if(&:nil?)
     end
 
     # Deletes all items where the value is blank
     #
     #   [1, [], nil].delete_blanks # => [1]
     def delete_blanks
-      delete_if { |i| i.blank? }
+      delete_if(&:blank?)
     end
 
     # Deletes all keys and subkeys that match +key+.
