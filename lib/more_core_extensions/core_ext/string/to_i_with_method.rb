@@ -48,7 +48,7 @@ module MoreCoreExtensions
       return n unless n =~ NUMBER_WITH_METHOD_REGEX && $2 != "percent"
 
       n = $1.include?('.') ? $1.to_f : $1.to_i
-      n.send($2)
+      n.public_send($2)
     end
 
     # Determines if the object contains a number with a method invocation
