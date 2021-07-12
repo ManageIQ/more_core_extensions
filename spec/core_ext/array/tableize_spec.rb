@@ -133,6 +133,17 @@ EOF
         expect(test.tableize(:max_width => 100)).to eq(expected)
       end
 
+      it 'with really short column value and color' do
+        test = [["Col1", "Col2"], ["\033[31mVal1\e[0m", "Val2"], ["Really Really Long Value3", "Value4"]]
+        expected = <<-EOF
+ Col1                      | Col2
+---------------------------|--------
+ \e[31mVal1\e[0m                      | Val2
+ Really Really Long Value3 | Value4
+EOF
+        expect(test.tableize).to eq(expected)
+      end
+
       it 'with :header => false option' do
         test = [["Col1", "Col2"], ["Val1", "Val2"], ["Value3", "Value4"]]
         expected = <<-EOF

@@ -123,6 +123,7 @@ module MoreCoreExtensions
       def format_field(field, width, justification)
         field = field.to_s.gsub(/\n|\r/, '')
         field = ansi_truncate(field, width)
+        width += ansi_escapes(field).sum { |f| f.to_s.size }
         "%0#{justification}#{width}s" % field
       end
 
