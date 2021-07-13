@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.3.1] - 2021-07-13
+### Changed
+- Fix String#to_i_with_method to raise the correct error on private methods [[#101](https://github.com/ManageIQ/more_core_extensions/pull/101)]
+- Fix issue where Array#tableize would not honor a smaller colored field [[#102](https://github.com/ManageIQ/more_core_extensions/pull/102)]
+
 ## [4.3.0] - 2020-10-27
 ### Added
 - Add String#to_i_with_method and friends [[#95](https://github.com/ManageIQ/more_core_extensions/pull/95)]
@@ -102,7 +107,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Upgraded to RSpec 3 [[#16](https://github.com/ManageIQ/more_core_extensions/pull/16)]
 - Added the Change Log!
 
-[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v4.3.0...HEAD
+[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v4.3.1...HEAD
+[4.3.1]: https://github.com/ManageIQ/more_core_extensions/compare/v4.3.0...v4.3.1
 [4.3.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.2.0...v4.3.0
 [4.2.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.1.0...v4.2.0
 [4.1.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.0.0...v4.1.0
