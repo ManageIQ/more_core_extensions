@@ -10,7 +10,7 @@ module MoreCoreExtensions
       if suffix_index.nil?
         Integer(self)
       else
-        Integer(self[0..-3]) * (2**10)**(suffix_index + 1)
+        Integer(Float(self[0..-3]) * ((2**10)**(suffix_index + 1)))
       end
     end
   end
