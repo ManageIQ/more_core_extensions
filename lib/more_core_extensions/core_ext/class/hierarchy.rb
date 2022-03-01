@@ -1,3 +1,4 @@
+require 'active_support'
 require 'active_support/core_ext/class/subclasses'
 require 'active_support/core_ext/object/try'
 
