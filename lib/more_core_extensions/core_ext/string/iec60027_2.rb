@@ -9,8 +9,10 @@ module MoreCoreExtensions
       suffix_index = IEC_60027_2_SIZE_SUFFIXES.index(self[-2..-1])
       if suffix_index.nil?
         Integer(self)
-      else
+      elsif include?(".")
         Integer(Float(self[0..-3]) * ((2**10)**(suffix_index + 1)))
+      else
+        Integer(self[0..-3]) * ((2**10)**(suffix_index + 1))
       end
     end
   end
