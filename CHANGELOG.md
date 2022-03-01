@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.4.0] - 2022-03-01
+### Added
+- Add support for Rails 7 ActiveSupport [[#105](https://github.com/ManageIQ/more_core_extensions/pull/105)]
+- Add float base support to String#iec_60027_2_to_i [[#106](https://github.com/ManageIQ/more_core_extensions/pull/106)]
+
 ## [4.3.1] - 2021-07-13
 ### Changed
 - Fix String#to_i_with_method to raise the correct error on private methods [[#101](https://github.com/ManageIQ/more_core_extensions/pull/101)]
@@ -107,7 +112,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Upgraded to RSpec 3 [[#16](https://github.com/ManageIQ/more_core_extensions/pull/16)]
 - Added the Change Log!
 
-[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v4.3.1...HEAD
+[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v4.4.0...HEAD
+[4.4.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.3.1...v4.4.0
 [4.3.1]: https://github.com/ManageIQ/more_core_extensions/compare/v4.3.0...v4.3.1
 [4.3.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.2.0...v4.3.0
 [4.2.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.1.0...v4.2.0
