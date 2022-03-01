@@ -1,3 +1,4 @@
+require 'active_support'
 require "active_support/core_ext/numeric/bytes"
 
 RSpec.describe String do
