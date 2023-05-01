@@ -4,7 +4,7 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 
 [![Gem Version](https://badge.fury.io/rb/more_core_extensions.svg)](http://badge.fury.io/rb/more_core_extensions)
 [![CI](https://github.com/ManageIQ/more_core_extensions/actions/workflows/ci.yaml/badge.svg)](https://github.com/ManageIQ/more_core_extensions/actions/workflows/ci.yaml)
-[![Code Climate](http://img.shields.io/codeclimate/github/ManageIQ/more_core_extensions.svg)](https://codeclimate.com/github/ManageIQ/more_core_extensions)
+[![Code Climate](https://codeclimate.com/github/ManageIQ/more_core_extensions.svg)](https://codeclimate.com/github/ManageIQ/more_core_extensions)
 [![Coverage Status](http://img.shields.io/coveralls/ManageIQ/more_core_extensions.svg)](https://coveralls.io/r/ManageIQ/more_core_extensions)
 
 [![Join the chat at https://gitter.im/ManageIQ/more_core_extensions](https://badges.gitter.im/ManageIQ/more_core_extensions.svg)](https://gitter.im/ManageIQ/more_core_extensions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
