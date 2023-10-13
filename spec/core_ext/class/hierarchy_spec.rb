@@ -27,15 +27,28 @@ describe Class do
     end
   end
 
-  it "#hierarchy" do
-    expect(IO.hierarchy).to eq(
-      BasicSocket => {
-        Socket     => {},
-        IPSocket   => {TCPSocket => {TCPServer => {}}, UDPSocket => {}},
-        UNIXSocket => {UNIXServer => {}}
-      },
-      File        => {}
-    )
+  describe "#hierarchy" do
+    it "by default returns a hash of descendants with keys being the classes" do
+      expect(IO.hierarchy).to eq(
+        BasicSocket => {
+          Socket     => {},
+          IPSocket   => {TCPSocket => {TCPServer => {}}, UDPSocket => {}},
+          UNIXSocket => {UNIXServer => {}}
+        },
+        File        => {}
+      )
+    end
+
+    it "with a block returns a hash of descendants with keys being the block evaluation" do
+      expect(IO.hierarchy(&:name)).to eq(
+        "BasicSocket" => {
+          "Socket"     => {},
+          "IPSocket"   => {"TCPSocket" => {"TCPServer" => {}}, "UDPSocket" => {}},
+          "UNIXSocket" => {"UNIXServer" => {}}
+        },
+        "File"        => {}
+      )
+    end
   end
 
   it "#lineage" do
