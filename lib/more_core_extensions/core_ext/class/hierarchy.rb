@@ -22,6 +22,8 @@ module MoreCoreExtensions
 
     # Returns a tree-like Hash structure of all descendants.
     #
+    #   If a block is passed, that block is used to format the keys of the hierarchy
+    #
     #   require 'socket'
     #   IO.hierarchy
     #   # => {BasicSocket=>
@@ -29,8 +31,18 @@ module MoreCoreExtensions
     #   #       IPSocket=>{TCPSocket=>{TCPServer=>{}}, UDPSocket=>{}},
     #   #       UNIXSocket=>{UNIXServer=>{}}},
     #   #     File=>{}}
-    def hierarchy
-      subclasses.each_with_object({}) { |k, h| h[k] = k.hierarchy }
+    #
+    #   IO.hierarchy(&:name)
+    #   # => {"BasicSocket"=>
+    #   #      {"Socket"=>{},
+    #   #       "IPSocket"=>{"TCPSocket"=>{"TCPServer"=>{}}, "UDPSocket"=>{}},
+    #   #       "UNIXSocket"=>{"UNIXServer"=>{}}},
+    #   #     "File"=>{}}
+    def hierarchy(&block)
+      subclasses.each_with_object({}) do |k, h|
+        key = block ? yield(k) : k
+        h[key] = k.hierarchy(&block)
+      end
     end
 
     # Returns an Array of all superclasses.
