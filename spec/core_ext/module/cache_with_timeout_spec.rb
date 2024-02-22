@@ -162,6 +162,7 @@ describe Module do
       #   and one tries to force reload, there is a small window where as it
       #   clears the current value, the other thread could get nil.
       test_class.cache_with_timeout(:thread_safety) { 2 }
+      skip "thread safety not supported" unless test_class.respond_to?(:thread_safety)
 
       Thread.new do
         10000.times do
