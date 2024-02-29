@@ -163,7 +163,7 @@ describe Module do
       #   clears the current value, the other thread could get nil.
       test_class.cache_with_timeout(:thread_safety) { 2 }
 
-      Thread.new do
+      t = Thread.new do
         10000.times do
           test_class.thread_safety(true)
         end
@@ -172,6 +172,7 @@ describe Module do
       10000.times do
         expect(test_class.thread_safety).to eq(2)
       end
+      t.join
     end
   end
 end
