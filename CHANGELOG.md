@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.5.0] - 2024-09-03
+### Added
+- Added Ruby 3.0 and 3.1 support [[#114](https://github.com/ManageIQ/more_core_extensions/pull/114)]
+- Added Ruby 3.2 and 3.3 support [[#123](https://github.com/ManageIQ/more_core_extensions/pull/123)]
+- Add Class#hierarchy block support to allow formatting of classes [[#113](https://github.com/ManageIQ/more_core_extensions/pull/113)]
+
 ## [4.4.0] - 2022-03-01
 ### Added
 - Add support for Rails 7 ActiveSupport [[#105](https://github.com/ManageIQ/more_core_extensions/pull/105)]
@@ -112,7 +118,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Upgraded to RSpec 3 [[#16](https://github.com/ManageIQ/more_core_extensions/pull/16)]
 - Added the Change Log!
 
-[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v4.4.0...HEAD
+[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v4.5.0...HEAD
+[4.5.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.3.1...v4.5.0
 [4.4.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.3.1...v4.4.0
 [4.3.1]: https://github.com/ManageIQ/more_core_extensions/compare/v4.3.0...v4.3.1
 [4.3.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.2.0...v4.3.0
