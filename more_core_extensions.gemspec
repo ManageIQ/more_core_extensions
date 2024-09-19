@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "activesupport"
   spec.add_runtime_dependency "sync"
+  spec.add_runtime_dependency "fiddle"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "manageiq-style"
