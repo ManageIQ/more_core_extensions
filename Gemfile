@@ -6,11 +6,20 @@ require File.join(Bundler::Plugin.index.load_paths("bundler-inject")[0], "bundle
 # Specify your gem's dependencies in more_core_extensions.gemspec
 gemspec
 
-# Rails 5 dropped support for Ruby < 2.2.2
-# Rails 6 dropped support for Ruby < 2.4.4
-if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.2.2")
-  active_support_version = "< 5"
-elsif Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.4.4")
-  active_support_version = "< 6"
-end
-gem 'activesupport', active_support_version
+minimum_version =
+  case ENV.fetch("TEST_RAILS_VERSION", "7.2")
+  when "7.2"
+    "~>7.2.2"
+  when "7.1"
+    "~>7.1.5"
+  when "7.0"
+    "~>7.0.8"
+  when "6.1"
+    "~>6.1.7"
+  when "6.0"
+    "~>6.0.6"
+  else
+    raise "Unexpected Rails version #{ENV['TEST_RAILS_VERSION'].inspect}"
+  end
+
+gem "activesupport", minimum_version
