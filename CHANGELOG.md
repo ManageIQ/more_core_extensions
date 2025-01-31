@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.5.1] - 2025-01-31
+### Fixed
+- Fix issues where active_support does not require logger properly [[#127](https://github.com/ManageIQ/more_core_extensions/pull/127)]
+
 ## [4.5.0] - 2024-09-03
 ### Added
 - Added Ruby 3.0 and 3.1 support [[#114](https://github.com/ManageIQ/more_core_extensions/pull/114)]
@@ -118,7 +122,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Upgraded to RSpec 3 [[#16](https://github.com/ManageIQ/more_core_extensions/pull/16)]
 - Added the Change Log!
 
-[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v4.5.0...HEAD
+[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v4.5.1...HEAD
+[4.5.1]: https://github.com/ManageIQ/more_core_extensions/compare/v4.5.0...v4.5.1
 [4.5.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.3.1...v4.5.0
 [4.4.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.3.1...v4.4.0
 [4.3.1]: https://github.com/ManageIQ/more_core_extensions/compare/v4.3.0...v4.3.1
