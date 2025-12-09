@@ -1,11 +1,18 @@
----
 name: CI
 on:
-  push:
   pull_request:
-  workflow_dispatch:
+  push:
+    branches-ignore:
+    - dependabot/*
+    - renovate/*
   schedule:
   - cron: 0 0 * * 0
+  workflow_dispatch:
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+permissions:
+  contents: read
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -24,7 +31,6 @@ jobs:
         - '7.0'
         - '7.1'
         include:
-        # Rails 7.0 and 7.1 support Ruby >= 2.7.0
         - ruby-version: '2.5'
           rails-version: '6.0'
         - ruby-version: '2.5'
@@ -33,7 +39,6 @@ jobs:
           rails-version: '6.0'
         - ruby-version: '2.6'
           rails-version: '6.1'
-        # Rails 7.2 supports Ruby >= 3.1.0
         - ruby-version: '3.1'
           rails-version: '7.2'
         - ruby-version: '3.2'
@@ -42,7 +47,6 @@ jobs:
           rails-version: '7.2'
     env:
       TEST_RAILS_VERSION: "${{ matrix.rails-version }}"
-      CC_TEST_REPORTER_ID: "${{ secrets.CC_TEST_REPORTER_ID }}"
     steps:
     - uses: actions/checkout@v6
     - name: Set up Ruby
@@ -53,7 +57,3 @@ jobs:
       timeout-minutes: 30
     - name: Run tests
       run: bundle exec rake
-    - name: Report code coverage
-      if: ${{ github.ref == 'refs/heads/master' && matrix.ruby-version == '3.1' }}
-      continue-on-error: true
-      uses: paambaati/codeclimate-action@v9
