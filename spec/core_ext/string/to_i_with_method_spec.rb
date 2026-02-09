@@ -33,7 +33,7 @@ RSpec.describe String do
   end
 
   it 'raises NoMethodError on private methods' do
-    expect { "1.raise".to_i_with_method }.to raise_error(NoMethodError, /private method `raise' called/)
+    expect { "1.raise".to_i_with_method }.to raise_error(NoMethodError, /private method [`']raise' called/)
   end
 end
 
