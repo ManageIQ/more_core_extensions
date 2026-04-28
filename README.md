@@ -106,6 +106,9 @@ MoreCoreExtensions are a set of core extensions beyond those provided by ActiveS
 
 #### String
 
+* core_ext/string/constantize_allowlist.rb
+  * `#constantize` - Enhanced version with optional `allowlist` parameter to restrict which constants can be resolved
+  * `#safe_constantize` - Enhanced version with optional `allowlist` parameter to restrict which constants can be resolved
 * core_ext/string/decimal_suffix.rb
   * `#decimal_si_to_big_decimal` - Returns a BigDecimal based on the number and suffix given
   * `#decimal_si_to_f` - Returns a Float based on the number and suffix given
