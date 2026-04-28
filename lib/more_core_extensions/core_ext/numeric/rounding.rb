@@ -14,4 +14,4 @@ module MoreCoreExtensions
   end
 end
 
-Numeric.send(:prepend, MoreCoreExtensions::NumericRounding)
+Numeric.prepend MoreCoreExtensions::NumericRounding

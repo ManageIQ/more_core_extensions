@@ -16,5 +16,5 @@ module MoreCoreExtensions
   end
 end
 
-Hash.send(:include, MoreCoreExtensions::HashSortBang) unless Hash.method_defined?(:sort!)
-Hash.send(:include, MoreCoreExtensions::HashSortByBang) unless Hash.method_defined?(:sort_by!)
+Hash.include MoreCoreExtensions::HashSortBang unless Hash.method_defined?(:sort!)
+Hash.include MoreCoreExtensions::HashSortByBang unless Hash.method_defined?(:sort_by!)

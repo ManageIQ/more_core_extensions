@@ -16,4 +16,4 @@ module MoreCoreExtensions
   end
 end
 
-Object.send(:include, MoreCoreExtensions::ObjectNamespace)
+Object.include MoreCoreExtensions::ObjectNamespace

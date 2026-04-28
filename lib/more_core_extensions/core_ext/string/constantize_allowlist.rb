@@ -25,4 +25,4 @@ module MoreCoreExtensions
   end
 end
 
-String.send(:prepend, MoreCoreExtensions::StringConstantizeAllowlist)
+String.prepend MoreCoreExtensions::StringConstantizeAllowlist

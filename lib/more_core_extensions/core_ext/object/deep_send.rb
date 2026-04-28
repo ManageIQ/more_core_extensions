@@ -25,4 +25,4 @@ module MoreCoreExtensions
   end
 end
 
-Object.send(:include, MoreCoreExtensions::ObjectDeepSend)
+Object.include MoreCoreExtensions::ObjectDeepSend

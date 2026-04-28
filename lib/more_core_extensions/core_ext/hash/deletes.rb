@@ -30,4 +30,4 @@ module MoreCoreExtensions
   end
 end
 
-Hash.send(:include, MoreCoreExtensions::HashDeletes)
+Hash.include MoreCoreExtensions::HashDeletes

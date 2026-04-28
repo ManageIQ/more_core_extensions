@@ -51,4 +51,4 @@ module MoreCoreExtensions
   end
 end
 
-Math.send(:extend, MoreCoreExtensions::MathSlope::ClassMethods)
+Math.extend MoreCoreExtensions::MathSlope::ClassMethods

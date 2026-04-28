@@ -47,4 +47,4 @@ module MoreCoreExtensions
   end
 end
 
-String.send(:include, MoreCoreExtensions::StringFormats)
+String.include MoreCoreExtensions::StringFormats

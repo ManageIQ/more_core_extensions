@@ -47,4 +47,4 @@ module MoreCoreExtensions
   end
 end
 
-Array.send(:include, MoreCoreExtensions::ArrayInclusions)
+Array.include MoreCoreExtensions::ArrayInclusions

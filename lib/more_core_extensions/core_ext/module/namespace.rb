@@ -10,4 +10,4 @@ module MoreCoreExtensions
   end
 end
 
-Module.send(:include, MoreCoreExtensions::ModuleNamespace)
+Module.include MoreCoreExtensions::ModuleNamespace

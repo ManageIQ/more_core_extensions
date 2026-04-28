@@ -11,4 +11,4 @@ module MoreCoreExtensions
   end
 end
 
-Numeric.send(:prepend, MoreCoreExtensions::NumericMath)
+Numeric.prepend MoreCoreExtensions::NumericMath

@@ -15,4 +15,4 @@ module MoreCoreExtensions
   end
 end
 
-Numeric.send(:prepend, MoreCoreExtensions::NumericClamp)
+Numeric.prepend MoreCoreExtensions::NumericClamp

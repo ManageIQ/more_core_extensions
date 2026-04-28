@@ -42,4 +42,4 @@ module MoreCoreExtensions
   end
 end
 
-Range.send(:include, MoreCoreExtensions::RangeStepValue)
+Range.include MoreCoreExtensions::RangeStepValue

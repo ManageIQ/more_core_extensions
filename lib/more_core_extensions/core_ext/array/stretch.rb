@@ -47,5 +47,5 @@ module MoreCoreExtensions
   end
 end
 
-Array.send(:extend, MoreCoreExtensions::ArrayStretch::ClassMethods)
-Array.send(:include, MoreCoreExtensions::ArrayStretch)
+Array.extend MoreCoreExtensions::ArrayStretch::ClassMethods
+Array.include MoreCoreExtensions::ArrayStretch

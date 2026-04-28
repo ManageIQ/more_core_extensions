@@ -81,7 +81,7 @@ module MoreCoreExtensions
   end
 end
 
-String.send(:prepend, MoreCoreExtensions::StringToIWithMethod)
-Numeric.send(:prepend, MoreCoreExtensions::NumericAndNilToIWithMethod)
-NilClass.send(:prepend, MoreCoreExtensions::NumericAndNilToIWithMethod)
-Object.send(:prepend, MoreCoreExtensions::ObjectToIWithMethod)
+String.prepend MoreCoreExtensions::StringToIWithMethod
+Numeric.prepend MoreCoreExtensions::NumericAndNilToIWithMethod
+NilClass.prepend MoreCoreExtensions::NumericAndNilToIWithMethod
+Object.prepend MoreCoreExtensions::ObjectToIWithMethod

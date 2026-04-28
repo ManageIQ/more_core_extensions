@@ -104,4 +104,4 @@ module MoreCoreExtensions
   end
 end
 
-Benchmark.send(:extend, MoreCoreExtensions::BenchmarkRealtimeStore)
+Benchmark.extend MoreCoreExtensions::BenchmarkRealtimeStore

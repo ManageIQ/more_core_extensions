@@ -12,4 +12,4 @@ module MoreCoreExtensions
   end
 end
 
-Array.send(:include, MoreCoreExtensions::ArrayDuplicates)
+Array.include MoreCoreExtensions::ArrayDuplicates

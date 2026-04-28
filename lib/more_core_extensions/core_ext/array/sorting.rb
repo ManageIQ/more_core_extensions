@@ -54,4 +54,4 @@ module MoreCoreExtensions
   end
 end
 
-Array.send(:include, MoreCoreExtensions::StableSorting)
+Array.include MoreCoreExtensions::StableSorting
