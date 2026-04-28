@@ -29,4 +29,4 @@ module MoreCoreExtensions
   end
 end
 
-Array.send(:include, MoreCoreExtensions::ArrayDeletes)
+Array.include MoreCoreExtensions::ArrayDeletes

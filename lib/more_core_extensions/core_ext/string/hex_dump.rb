@@ -66,4 +66,4 @@ module MoreCoreExtensions
   end
 end
 
-String.send(:include, MoreCoreExtensions::StringHexDump)
+String.include MoreCoreExtensions::StringHexDump

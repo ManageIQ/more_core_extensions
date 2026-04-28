@@ -18,4 +18,4 @@ module MoreCoreExtensions
   end
 end
 
-String.send(:prepend, MoreCoreExtensions::IEC60027_2)
+String.prepend MoreCoreExtensions::IEC60027_2

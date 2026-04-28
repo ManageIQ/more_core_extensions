@@ -15,4 +15,4 @@ module MoreCoreExtensions
   end
 end
 
-Array.send(:include, MoreCoreExtensions::ArrayElementCounts)
+Array.include MoreCoreExtensions::ArrayElementCounts

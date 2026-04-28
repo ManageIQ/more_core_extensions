@@ -6,4 +6,4 @@ module MoreCoreExtensions
   end
 end
 
-Symbol.send(:include, MoreCoreExtensions::SymbolToI) unless Symbol.method_defined?(:to_i)
+Symbol.include MoreCoreExtensions::SymbolToI unless Symbol.method_defined?(:to_i)

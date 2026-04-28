@@ -107,4 +107,4 @@ module MoreCoreExtensions
   end
 end
 
-Process.send(:extend, MoreCoreExtensions::ProcessPauseResume)
+Process.extend MoreCoreExtensions::ProcessPauseResume

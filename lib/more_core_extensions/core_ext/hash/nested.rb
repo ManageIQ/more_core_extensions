@@ -15,4 +15,4 @@ module MoreCoreExtensions
   end
 end
 
-Hash.send(:include, MoreCoreExtensions::HashNested)
+Hash.include MoreCoreExtensions::HashNested

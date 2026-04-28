@@ -34,4 +34,4 @@ module MoreCoreExtensions
   end
 end
 
-Array.send(:include, MoreCoreExtensions::ArrayMath)
+Array.include MoreCoreExtensions::ArrayMath

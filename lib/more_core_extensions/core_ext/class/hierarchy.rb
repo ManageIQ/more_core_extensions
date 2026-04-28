@@ -66,4 +66,4 @@ module MoreCoreExtensions
   end
 end
 
-Class.send(:include, MoreCoreExtensions::ClassHierarchy)
+Class.include MoreCoreExtensions::ClassHierarchy

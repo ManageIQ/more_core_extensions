@@ -16,4 +16,4 @@ module MoreCoreExtensions
   end
 end
 
-Array.send(:include, MoreCoreExtensions::ArrayCompactMap)
+Array.include MoreCoreExtensions::ArrayCompactMap

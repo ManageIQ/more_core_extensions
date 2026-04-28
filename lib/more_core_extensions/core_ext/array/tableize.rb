@@ -168,4 +168,4 @@ module MoreCoreExtensions
   end
 end
 
-Array.send(:include, MoreCoreExtensions::ArrayTableize)
+Array.include MoreCoreExtensions::ArrayTableize

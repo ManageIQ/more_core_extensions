@@ -27,4 +27,4 @@ module MoreCoreExtensions
   end
 end
 
-String.send(:prepend, MoreCoreExtensions::DecimalSI)
+String.prepend MoreCoreExtensions::DecimalSI

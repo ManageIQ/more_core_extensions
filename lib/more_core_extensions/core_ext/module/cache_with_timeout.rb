@@ -97,5 +97,5 @@ module MoreCoreExtensions
   end
 end
 
-Module.send(:include, MoreCoreExtensions::CacheWithTimeout)
-Module.send(:extend, MoreCoreExtensions::CacheWithTimeout::ClassMethods)
+Module.include MoreCoreExtensions::CacheWithTimeout
+Module.extend MoreCoreExtensions::CacheWithTimeout::ClassMethods
