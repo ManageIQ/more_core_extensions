@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.7.0] - 2026-07-31
+### Changed
+- Drop Numeric#clamp as it is superseded by Ruby's built-in Comparable#clamp [[#162](https://github.com/ManageIQ/more_core_extensions/pull/162)]
+
 ## [4.6.0] - 2026-04-28
 ### Added
 - Add allowlist support to String#constantize and String#safe_constantize [[#155](https://github.com/ManageIQ/more_core_extensions/pull/155)]
@@ -134,7 +138,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Upgraded to RSpec 3 [[#16](https://github.com/ManageIQ/more_core_extensions/pull/16)]
 - Added the Change Log!
 
-[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v4.6.0...HEAD
+[Unreleased]: https://github.com/ManageIQ/more_core_extensions/compare/v4.7.0...HEAD
+[4.7.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.6.0...v4.7.0
 [4.6.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.5.1...v4.6.0
 [4.5.1]: https://github.com/ManageIQ/more_core_extensions/compare/v4.5.0...v4.5.1
 [4.5.0]: https://github.com/ManageIQ/more_core_extensions/compare/v4.3.1...v4.5.0
